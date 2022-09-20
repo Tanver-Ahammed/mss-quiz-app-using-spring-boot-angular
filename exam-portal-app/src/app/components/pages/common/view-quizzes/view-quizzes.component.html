@@ -7,6 +7,9 @@
     <mat-card-subtitle>
       {{ quiz.categoryDTO.title }}
     </mat-card-subtitle>
+    <mat-card-subtitle>
+      Author: {{ quiz.userDTO.username }}
+    </mat-card-subtitle>
     <!--author-->
   </mat-card-header>
   <mat-card-content>
@@ -20,8 +23,13 @@
     <button mat-stroked-button color="accent" class="ml20">
       Questions: {{ quiz.numberOfQuestions }}
     </button>
-    <button mat-flat-button color="accent" class="ml20">Update</button>
+    <button  [routerLink]="'/admin/quiz/' + quiz.id" mat-flat-button color="accent" class="ml20">
+      Update
+    </button>
     <button mat-flat-button color="accent" class="ml20">Attempts</button>
+    <button mat-flat-button color="warn" class="ml20" (click)="deleteQuiz(quiz.id)">
+      Delete
+    </button>
   </mat-card-actions>
 </mat-card>
 

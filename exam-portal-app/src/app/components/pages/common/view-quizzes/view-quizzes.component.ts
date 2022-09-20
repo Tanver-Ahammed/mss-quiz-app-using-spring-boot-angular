@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {QuizService} from "../../../../services/quiz.service";
 import Swal from "sweetalert2";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-view-quizzes',
@@ -28,7 +29,8 @@ export class ViewQuizzesComponent implements OnInit {
     }
   ]
 
-  constructor(private quizService: QuizService) {
+  constructor(private quizService: QuizService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -42,4 +44,27 @@ export class ViewQuizzesComponent implements OnInit {
     );
   }
 
+  // delete quiz
+  deleteQuiz(quizId: number) {
+    Swal.fire({
+        icon: 'info',
+        title: 'Are You Sure Wand to Delete?',
+        confirmButtonText: 'Delete',
+        showCancelButton: true
+      }
+    ).then((result) => {
+      if (result.isConfirmed) {
+        // delete method call
+        this.quizService.deleteQuiz(quizId).subscribe(
+          (data: any) => {
+            this.quizzes = this.quizzes.filter(quiz => quiz.id != quizId);
+            Swal.fire("Success!!", 'Quiz deleted successfully...', 'success');
+          },
+          (error) => Swal.fire("Error!!", 'Error in deleted Quiz!!!', 'error')
+        );
+
+      }
+    });
+
+  }
 }
