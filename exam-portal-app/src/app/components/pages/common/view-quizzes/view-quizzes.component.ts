@@ -12,14 +12,18 @@ export class ViewQuizzesComponent implements OnInit {
   quizzes = [
     {
       id: 0,
-      title: 'Java',
-      description: 'Programming',
-      maxMarks: 20,
-      numberOfQuestions: 10,
+      title: '',
+      description: '',
+      maxMarks: 0,
+      numberOfQuestions: 0,
       active: true,
       categoryDTO: {
         id: 0,
-        title: 'Programming'
+        title: ''
+      },
+      userDTO: {
+        id: 0,
+        username: ''
       }
     }
   ]

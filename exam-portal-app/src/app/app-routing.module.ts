@@ -11,8 +11,8 @@ import {ProfileComponent} from "./components/pages/profile/profile.component";
 import {WelcomeComponent} from "./components/pages/admin/welcome/welcome.component";
 import {ViewCategoriesComponent} from "./components/pages/common/view-categories/view-categories.component";
 import {AddCategoryComponent} from "./components/pages/admin/add-category/add-category.component";
-import {AddQuizComponent} from "./components/pages/admin/add-quiz/add-quiz.component";
 import {ViewQuizzesComponent} from "./components/pages/common/view-quizzes/view-quizzes.component";
+import {AddQuizComponent} from "./components/pages/admin/add-quiz/add-quiz.component";
 
 const routes: Routes = [
   {
@@ -55,10 +55,9 @@ const routes: Routes = [
       {
         path: 'quizzes',
         component: ViewQuizzesComponent,
-      },
-      {
+      }, {
         path: 'add-quiz',
-        component: AddQuizComponent,
+        component: AddQuizComponent
       }
     ]
 

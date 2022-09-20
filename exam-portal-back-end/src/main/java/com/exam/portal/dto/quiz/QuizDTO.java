@@ -21,7 +21,7 @@ public class QuizDTO {
 
     private String description;
 
-    private int maxMArks;
+    private int maxMarks;
 
     private int numberOfQuestions;
 

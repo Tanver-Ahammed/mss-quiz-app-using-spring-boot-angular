@@ -8,6 +8,8 @@
     </JAVADOC>
     <SOURCES>
       <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/2.7.2/spring-data-commons-2.7.2-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.ideaLibSources/spring-data-commons-2.7.2-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.ideaLibSources/spring-data-commons-2.7.2-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

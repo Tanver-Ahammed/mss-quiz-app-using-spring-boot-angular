@@ -27,7 +27,7 @@ public class Quiz {
     @Column(length = 5000)
     private String description;
 
-    private int maxMArks;
+    private int maxMarks;
 
     private int numberOfQuestions;
 

@@ -11,11 +11,11 @@ export class ViewCategoriesComponent implements OnInit {
 
   categories: any = [
     {
-      id: 0,
-      title: 'Java',
-      description: 'Programming',
+      id: '',
+      title: '',
+      description: '',
       quizDTOS: {
-        id : 0
+        id: 0
       }
     },
   ]
