@@ -34,8 +34,7 @@ export class UpdateQuizComponent implements OnInit {
     );
     this.categoryService.fetchAllCategories().subscribe(
       (data) => (this.categories = data),
-      (error) =>
-        Swal.fire('Error!!', 'error is loading data from server!!', 'error')
+      (error) => Swal.fire('Error!!', 'error is loading data from server!!', 'error')
     );
   }
 
@@ -50,7 +49,7 @@ export class UpdateQuizComponent implements OnInit {
     // other validation...
 
 
-    // add function call
+    // update function call
     this.quizService.updateQuiz(this.quiz).subscribe(
       (data: any) => {
         Swal.fire('Success!!', 'Quiz is updated Successfully...', 'success')

@@ -16,14 +16,18 @@
     {{ quiz.description }}
   </mat-card-content>
   <mat-card-actions>
-    <button mat-flat-button color="accent">Questions</button>
+    <button
+      [routerLink]="'/admin/view-questions/' + quiz.id + '/' + quiz.title"
+      mat-flat-button color="accent">
+      Questions
+    </button>
     <button mat-stroked-button color="accent" class="ml20">
       Max Marks: {{ quiz.maxMarks }}
     </button>
     <button mat-stroked-button color="accent" class="ml20">
       Questions: {{ quiz.numberOfQuestions }}
     </button>
-    <button  [routerLink]="'/admin/quiz/' + quiz.id" mat-flat-button color="accent" class="ml20">
+    <button [routerLink]="'/admin/quiz/update/' + quiz.id" mat-flat-button color="accent" class="ml20">
       Update
     </button>
     <button mat-flat-button color="accent" class="ml20">Attempts</button>
