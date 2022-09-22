@@ -16,21 +16,17 @@
               required
             />
           </mat-form-field>
-          <!--description field-->
-          <mat-form-field class="w-100" appearance="fill">
-            <mat-label>Enter Description</mat-label>
-            <textarea
-              [(ngModel)]="quizData.description"
-              type="text"
-              name="description"
-              placeholder="Enter Quiz description"
-              rows="5"
-              matInput
-            >
-            </textarea>
-          </mat-form-field>
 
-          <div class="row">
+          <!--description field-->
+          <ckeditor
+            [editor]="Editor"
+            data="<h1>Write Your Question Here</h1>"
+            name="description"
+            [(ngModel)]="quizData.description"
+          >
+          </ckeditor>
+
+          <div class="row mt20">
             <!--max marks field-->
             <div class="col-md-6">
               <mat-form-field class="w-100" appearance="fill">
@@ -72,7 +68,7 @@
           >
             Publish Status
           </mat-slide-toggle>
-          <br />
+          <br/>
 
           <!--total category-->
           <mat-form-field appearance="fill" class="mt20 w-100">

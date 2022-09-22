@@ -3,6 +3,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {QuestionService} from "../../../../services/question.service";
 import Swal from "sweetalert2";
+// @ts-ignore
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-update-quiz-question',
@@ -10,6 +12,8 @@ import Swal from "sweetalert2";
   styleUrls: ['./update-quiz-question.component.css']
 })
 export class UpdateQuizQuestionComponent implements OnInit {
+
+  public Editor = ClassicEditor;
 
   questionId: number = 0;
   question: any = null;

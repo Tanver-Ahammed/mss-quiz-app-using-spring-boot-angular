@@ -3,6 +3,9 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {QuestionService} from "../../../../services/question.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import Swal from "sweetalert2";
+// @ts-ignore
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 
 @Component({
   selector: 'app-add-question',
@@ -10,6 +13,8 @@ import Swal from "sweetalert2";
   styleUrls: ['./add-question.component.css']
 })
 export class AddQuestionComponent implements OnInit {
+
+  public Editor = ClassicEditor;
 
   quizId: number = 0;
   quizTitle: string = '';

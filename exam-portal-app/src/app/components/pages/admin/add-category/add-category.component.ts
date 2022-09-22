@@ -3,6 +3,8 @@ import {CategoryService} from "../../../../services/category.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import Swal from "sweetalert2";
 import {Router} from "@angular/router";
+// @ts-ignore
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-add-category',
@@ -10,6 +12,8 @@ import {Router} from "@angular/router";
   styleUrls: ['./add-category.component.css']
 })
 export class AddCategoryComponent implements OnInit {
+
+  public Editor = ClassicEditor;
 
   category = {
     title: '',

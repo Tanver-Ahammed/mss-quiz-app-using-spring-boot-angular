@@ -4,6 +4,8 @@ import {QuizService} from "../../../../services/quiz.service";
 import Swal from "sweetalert2";
 import {CategoryService} from "../../../../services/category.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+// @ts-ignore
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-update-quiz',
@@ -11,6 +13,8 @@ import {MatSnackBar} from "@angular/material/snack-bar";
   styleUrls: ['./update-quiz.component.css']
 })
 export class UpdateQuizComponent implements OnInit {
+
+  public Editor = ClassicEditor;
 
   quizId: number = 0;
   quiz: any = null;

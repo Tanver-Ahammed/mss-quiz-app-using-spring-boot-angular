@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
-import { CategoryService } from 'src/app/services/category.service';
-import { LoginService } from 'src/app/services/login.service';
-import { QuizService } from 'src/app/services/quiz.service';
-import { UserService } from 'src/app/services/user.service';
+import {Component, OnInit} from '@angular/core';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {Router} from '@angular/router';
+import {CategoryService} from 'src/app/services/category.service';
+import {LoginService} from 'src/app/services/login.service';
+import {QuizService} from 'src/app/services/quiz.service';
 import Swal from 'sweetalert2';
+// @ts-ignore
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-add-quiz',
@@ -13,6 +14,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['./add-quiz.component.css'],
 })
 export class AddQuizComponent implements OnInit {
+
+  public Editor = ClassicEditor;
+
   categories: any = [];
 
   quizData = {

@@ -19,19 +19,15 @@
             </mat-form-field>
 
             <!--enter description-->
-            <mat-form-field class="w-100" appearance="outline">
-              <mat-label>Description</mat-label>
-              <textarea
-                autofocus
-                type="text"
-                name="description"
-                [(ngModel)]="category.description"
-                required
-                matInput
-                rows="15"
-                placeholder="Enter Category Description">
-            </textarea>
-            </mat-form-field>
+            <ckeditor
+              [editor]="Editor"
+              data="<h1>Write Your Question Here</h1>"
+              name="description"
+              [(ngModel)]="category.description"
+              style="height: 250px"
+            >
+            </ckeditor>
+
             <div class="container text-center mt20">
               <button mat-raised-button color="accent">Add Category</button>
             </div>

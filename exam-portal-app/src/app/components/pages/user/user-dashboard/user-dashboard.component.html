@@ -1,1 +1,15 @@
-<h1>Welcome to NORMAL User Dashboard</h1>
+<div class="bootstrap-wrapper">
+  <div class="container-fluid">
+    <div class="row">
+      <!--left-->
+      <div class="div col-md-3">
+        <app-user-sidebar></app-user-sidebar>
+      </div>
+      <!--right-->
+      <div class="div col-md-3">
+        <router-outlet></router-outlet>
+      </div>
+
+    </div>
+  </div>
+</div>
