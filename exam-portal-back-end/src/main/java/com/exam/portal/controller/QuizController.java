@@ -48,6 +48,18 @@ public class QuizController {
         return ResponseEntity.ok(this.quizService.getAllQuizzesByUserId(userId));
     }
 
+    // get all active quizzes for user
+    @GetMapping(path = "/active")
+    public ResponseEntity<List<QuizDTO>> getAllActiveQuizzes() {
+        return ResponseEntity.ok(this.quizService.getAllActiveQuizzes());
+    }
+
+    // get all active quizzes by category for user
+    @GetMapping(path = "/active/category/{categoryId}")
+    public ResponseEntity<List<QuizDTO>> getAllActiveQuizzesByCategory(@PathVariable("categoryId") Long categoryId) {
+        return ResponseEntity.ok(this.quizService.getAllActiveQuizzesByCategory(categoryId));
+    }
+
     // update quiz
     @PutMapping(path = "/")
     public ResponseEntity<QuizDTO> updateQuiz(@RequestBody QuizDTO quizDTO) {

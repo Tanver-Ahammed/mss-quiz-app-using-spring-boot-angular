@@ -56,14 +56,14 @@ export class LoginComponent implements OnInit {
 
             // redirect ADMIN: admin dashboard
             if (this.loginService.getUserRole() === "ADMIN") {
-              // window.location.href = '/admin';
-              this.router.navigateByUrl('/admin');
+              window.location.href = '/admin';
+              // this.router.navigateByUrl('/admin');
               this.loginService.loginStatusSubject.next(true);
             }
             // redirect NORMAL: normal dashboard
             else if (this.loginService.getUserRole() === "NORMAL") {
-              // window.location.href = '/user';
-              this.router.navigateByUrl('/user');
+              window.location.href = '/user';
+              // this.router.navigateByUrl('/user');
               this.loginService.loginStatusSubject.next(true);
             } else {
               this.loginService.logout();

@@ -20,6 +20,21 @@ export class QuizService {
     return this.http.get(`${baseUrl}/quiz/`);
   }
 
+  // fetch all quizzes
+  public fetchQuizzesByCategory(categoryId: number) {
+    return this.http.get(`${baseUrl}/quiz/category/${categoryId}`);
+  }
+
+  // fetch all active quizzes for user
+  public fetchAllActiveQuizzes() {
+    return this.http.get(`${baseUrl}/quiz/active/`);
+  }
+
+  // fetch all active quizzes by category for user
+  public fetchAllActiveQuizzesByCategory(categoryId: number) {
+    return this.http.get(`${baseUrl}/quiz/active/category/${categoryId}`);
+  }
+
   // delete quiz
   public deleteQuiz(quizId: number) {
     return this.http.delete(`${baseUrl}/quiz/${quizId}`);

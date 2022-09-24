@@ -77,6 +77,27 @@ public class QuizServiceImpl implements QuizService {
                 .collect(Collectors.toList());
     }
 
+    // for user
+    @Override
+    public List<QuizDTO> getAllActiveQuizzes() {
+        return this.quizRepository
+                .findByIsActive(true)
+                .stream()
+                .map(this::quizToQuizDTO)
+                .collect(Collectors.toList());
+    }
+
+    // for user
+    @Override
+    public List<QuizDTO> getAllActiveQuizzesByCategory(Long categoryId) {
+        Category category = this.categoryService.getCategoryById(categoryId);
+        return this.quizRepository
+                .findByCategoryAndIsActive(category, true)
+                .stream()
+                .map(this::quizToQuizDTO)
+                .collect(Collectors.toList());
+    }
+
     @Override
     public void deleteQuiz(Long quizId) {
         this.quizRepository.delete(this.getQuizById(quizId));

@@ -30,8 +30,17 @@
     Register
   </a>
   <a
-    *ngIf="isLoggedIn && user"
+    *ngIf="isLoggedIn && user && userRole == 'ADMIN'"
     routerLink="/admin/profile"
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with share icon"
+  >
+    {{loginService.getUserDetails().username}}
+  </a>
+  <a
+    *ngIf="isLoggedIn && user && userRole == 'NORMAL'"
+    routerLink="/user/profile"
     mat-icon-button
     class="example-icon"
     aria-label="Example icon-button with share icon"

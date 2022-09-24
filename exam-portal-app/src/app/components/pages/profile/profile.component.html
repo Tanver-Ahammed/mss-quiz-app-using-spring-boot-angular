@@ -1,6 +1,6 @@
 <mat-card *ngIf="user">
   <h1>Your Profile</h1>
-<!--  {{user|json}}-->
+  <!--  {{user|json}}-->
   <mat-card-content>
     <div class="bootstrap-wrapper">
       <div class="container">
@@ -10,7 +10,7 @@
             alt="Profile Image"
             class="profile-image"
           >
-          <h1 class="mt20">Md. Tanver Ahammed</h1>
+          <h1 class="mt20">{{user.firstName}} {{user.lastName}} </h1>
         </div>
         <div class="row">
           <div class="col-md-10 offset-md-1">

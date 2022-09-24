@@ -18,6 +18,10 @@ public interface QuizService {
 
     List<QuizDTO> getAllQuizzesByUserId(Long userId);
 
+    List<QuizDTO> getAllActiveQuizzes();
+
+    List<QuizDTO> getAllActiveQuizzesByCategory(Long categoryId);
+
     void deleteQuiz(Long quizId);
 
 }

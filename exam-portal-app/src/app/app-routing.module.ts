@@ -19,6 +19,8 @@ import {AddQuestionComponent} from "./components/pages/admin/add-question/add-qu
 import {
   UpdateQuizQuestionComponent
 } from "./components/pages/admin/update-quiz-question/update-quiz-question.component";
+import {UserWelcomeComponent} from "./components/pages/user/user-welcome/user-welcome.component";
+import {LoadQuizComponent} from "./components/pages/user/load-quiz/load-quiz.component";
 
 const routes: Routes = [
   {
@@ -83,8 +85,21 @@ const routes: Routes = [
   {
     path: 'user',
     component: UserDashboardComponent,
-    pathMatch: 'full',
-    canActivate: [NormalGuard]
+    canActivate: [NormalGuard],
+    children: [
+      {
+        path: '',
+        component: UserWelcomeComponent
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent
+      },
+      {
+        path: 'quizzes/:categoryId',
+        component: LoadQuizComponent
+      }
+    ]
   },
 ];
 
