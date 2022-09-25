@@ -12,12 +12,26 @@
       <mat-card-content>
         <form class="mt20" (ngSubmit)="questionFromSubmit()">
           <!--enter question content-->
-          <ckeditor
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Write Question Content</mat-label>
+            <textarea
+              autofocus
+              type="text"
+              name="content"
+              [(ngModel)]="question.content"
+              required
+              matInput
+              rows="5"
+              placeholder="Enter Here">
+            </textarea>
+          </mat-form-field>
+
+          <!--<ckeditor
             [editor]="Editor"
             data="<h1>Write Your Question Here</h1>"
             name="content"
             [(ngModel)]="question.content">
-          </ckeditor>
+          </ckeditor>-->
 
           <!--options-->
           <div class="row mt20">
@@ -83,7 +97,7 @@
           <!--answer-->
           <mat-form-field class="w-100 mt20" appearance="outline">
             <mat-label>Select Answer</mat-label>
-            <mat-select [(ngModel)]="question.answer" name="answer">
+            <mat-select [(ngModel)]="question.answer" name="answer" required>
               <mat-option *ngIf="question.option1" [value]="question.option1">{{question.option1}}</mat-option>
               <mat-option *ngIf="question.option2" [value]="question.option2">{{question.option2}}</mat-option>
               <mat-option *ngIf="question.option3" [value]="question.option3">{{question.option3}}</mat-option>

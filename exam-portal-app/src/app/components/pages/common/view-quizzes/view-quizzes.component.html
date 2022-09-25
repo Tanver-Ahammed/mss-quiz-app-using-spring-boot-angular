@@ -12,9 +12,7 @@
     </mat-card-subtitle>
     <!--author-->
   </mat-card-header>
-  <mat-card-content>
-    {{ quiz.description }}
-  </mat-card-content>
+  <mat-card-content [innerHTML]="quiz.description"></mat-card-content>
   <mat-card-actions>
     <button
       [routerLink]="'/admin/view-questions/' + quiz.id + '/' + quiz.title"

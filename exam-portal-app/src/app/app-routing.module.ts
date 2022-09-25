@@ -21,6 +21,8 @@ import {
 } from "./components/pages/admin/update-quiz-question/update-quiz-question.component";
 import {UserWelcomeComponent} from "./components/pages/user/user-welcome/user-welcome.component";
 import {LoadQuizComponent} from "./components/pages/user/load-quiz/load-quiz.component";
+import {InstructionsComponent} from "./components/pages/user/instructions/instructions.component";
+import {StartQuizComponent} from "./components/pages/user/start-quiz/start-quiz.component";
 
 const routes: Routes = [
   {
@@ -98,9 +100,18 @@ const routes: Routes = [
       {
         path: 'quizzes/:categoryId',
         component: LoadQuizComponent
-      }
+      },
+      {
+        path: 'instructions/:quizId',
+        component: InstructionsComponent
+      },
+
     ]
-  },
+  }, {
+    path: 'start-quiz/:quizId/:quizTitle',
+    component: StartQuizComponent,
+    canActivate: [NormalGuard]
+  }
 ];
 
 @NgModule({

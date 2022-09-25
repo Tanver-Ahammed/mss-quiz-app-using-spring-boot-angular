@@ -52,6 +52,12 @@ export class AddQuestionComponent implements OnInit {
       })
       return;
     }
+    if (this.question.answer.trim() == '' || this.question.answer == null) {
+      this.snack.open('Question Answer Required!!', 'OK', {
+        duration: 2000
+      })
+      return;
+    }
 
     this.questionService.addQuestion(this.question).subscribe(
       data => {

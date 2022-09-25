@@ -18,7 +18,9 @@
           </mat-card-content>
           <mat-card-actions>
             <button mat-raised-button color="primary">View</button>
-            <button mat-raised-button color="accent">Start</button>
+            <button mat-raised-button color="accent" [routerLink]="'/user/instructions/' + quiz.id">
+              Start
+            </button>
             <button mat-button color="accent">Questions: {{quiz.numberOfQuestions}}</button>
             <button mat-button color="accent">M.M: {{quiz.maxMarks}}</button>
           </mat-card-actions>
@@ -36,5 +38,3 @@
     </div>
   </div>
 </div>
-
-{{quizzes | json}}

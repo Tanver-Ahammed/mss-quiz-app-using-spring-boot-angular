@@ -1,0 +1,60 @@
+<div class="bootstrap-wrapper">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <mat-card class="mt20">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>
+              <h1>Read the instruction in this page carefully</h1>
+            </mat-card-title>
+            <mat-card-subtitle>
+              Go to next Step
+            </mat-card-subtitle>
+          </mat-card-header>
+
+          <mat-card-content>
+            <h1>{{quiz.title}}</h1>
+            <p>{{quiz.description}}</p>
+            <mat-divider></mat-divider>
+            <br>
+            <h1>Important instructions</h1>
+
+            <ul>
+              <li>This Quiz is Only for ICT in MBSTU.</li>
+              <li>this Quiz has <b>{{quiz.numberOfQuestions}} Questions</b>.</li>
+              <li>this Quiz has <b>{{quiz.numberOfQuestions}} Questions</b>.</li>
+              <li>Your have to submit with in <b>{{quiz.numberOfQuestions}} Minutes</b>.</li>
+              <li>Each Question carries <b>1 marks</b>.</li>
+              <li>This Quiz has no negative number.</li>
+              <li>All Questions MCQ Type.</li>
+              <li>You Attend any number of time.</li>
+            </ul>
+
+            <mat-divider></mat-divider>
+            <br>
+            <h1>Attempting Quiz</h1>
+            <ul>
+              <li>Click <b style="color: #1976d2">Start Quiz</b> button to starting the quiz.</li>
+              <li>The time will start the moment, when you click the start button.</li>
+              <li>You can't resume this Quiz, if you due interrupt any reason.</li>
+              <li>Scroll down to move next question.</li>
+              <li>Click <b style="color: #1976d2">Submit</b> button on complete the Quiz.</li>
+              <li>Report of the test is automatically generated in the form of PDF copy.</li>
+            </ul>
+          </mat-card-content>
+          <mat-card-actions class="text-center">
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="startQuiz()">
+              Start Quiz
+            </button>
+          </mat-card-actions>
+
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -4,7 +4,7 @@
     <mat-list-item *ngFor="let category of categories">
       <mat-icon mat-list-icon>category</mat-icon>
       <div mat-line>{{category.title}}</div>
-      <div mat-line>{{category.description}}</div>
+      <div mat-line [innerHTML]="category.description"></div>
       <mat-divider></mat-divider>
     </mat-list-item>
   </mat-list>
