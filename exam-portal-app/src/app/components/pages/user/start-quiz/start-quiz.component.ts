@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {LocationStrategy} from "@angular/common";
 import {ActivatedRoute} from "@angular/router";
-import {QuestionService} from "../../../../services/question.service";
 import Swal from "sweetalert2";
+import {QuizService} from "../../../../services/quiz.service";
 
 @Component({
   selector: 'app-start-quiz',
@@ -13,11 +13,11 @@ export class StartQuizComponent implements OnInit {
 
   quizId: number = 0;
   quizTitle: any = null;
-  questions: any = [];
+  quiz: any = null;
 
   constructor(private locationStrategy: LocationStrategy,
               private activatedRoute: ActivatedRoute,
-              private questionService: QuestionService) {
+              private quizService: QuizService) {
     // preventing back button in browser
     // @ts-ignore
     history.pushState(null, null, window.location.href);
@@ -34,16 +34,17 @@ export class StartQuizComponent implements OnInit {
   }
 
   loadQuestions() {
-    this.questionService.fetchAllQuestionByQuizId(this.quizId).subscribe(
+    this.quizService.fetchSingleQuiz(this.quizId).subscribe(
       (data) => {
-        this.questions = data;
-        this.questions.forEach((q: any) => {
-          q['givenAnswer'] = '';
-        })
-        console.log(this.questions)
+        this.quiz = data;
+        console.log(this.quiz)
       },
       (error) => Swal.fire('Error!!', 'Server Error!!', 'error')
     )
   };
+
+  submitQuiz() {
+    console.log(this.quiz);
+  }
 
 }

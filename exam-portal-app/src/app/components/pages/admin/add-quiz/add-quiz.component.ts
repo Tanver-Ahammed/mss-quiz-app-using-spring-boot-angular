@@ -26,14 +26,11 @@ export class AddQuizComponent implements OnInit {
     maxMarks: '',
     numberOfQuestions: '',
     active: true,
+    author: '',
     categoryDTO: {
       id: '',
       title: '',
-    },
-    userDTO: {
-      id: '',
-      name: '',
-    },
+    }
   };
 
   constructor(
@@ -42,7 +39,8 @@ export class AddQuizComponent implements OnInit {
     private quizService: QuizService,
     private snack: MatSnackBar,
     private router: Router
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.categoryService.fetchAllCategories().subscribe(
@@ -62,7 +60,7 @@ export class AddQuizComponent implements OnInit {
     }
 
     // other validation
-    this.quizData.userDTO.id = this.loginService.getUserDetails().id;
+    this.quizData.author = this.loginService.getUserDetails().username;
 
     // add function call
     this.quizService.addQuiz(this.quizData).subscribe(

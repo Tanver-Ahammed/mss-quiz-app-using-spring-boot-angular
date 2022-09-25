@@ -11,7 +11,7 @@ public interface QuizRepository extends JpaRepository<Quiz, Long> {
 
     List<Quiz> findByCategory(Category category);
 
-    List<Quiz> findByUser(User user);
+    List<Quiz> findByAuthor(String username);
 
     // for user
     List<Quiz> findByIsActive(boolean isActive);

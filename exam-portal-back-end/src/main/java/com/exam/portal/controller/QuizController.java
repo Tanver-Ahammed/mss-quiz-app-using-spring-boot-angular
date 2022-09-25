@@ -43,9 +43,9 @@ public class QuizController {
     }
 
     // get all quizzes by user
-    @GetMapping(path = "/user/{userId}")
-    public ResponseEntity<List<QuizDTO>> getAllQuizzesByUser(@PathVariable("userId") Long userId) {
-        return ResponseEntity.ok(this.quizService.getAllQuizzesByUserId(userId));
+    @GetMapping(path = "/user/{username}")
+    public ResponseEntity<List<QuizDTO>> getAllQuizzesByUser(@PathVariable("username") String username) {
+        return ResponseEntity.ok(this.quizService.getAllQuizzesByUserId(username));
     }
 
     // get all active quizzes for user

@@ -7,63 +7,39 @@
       </div>
       <!--questions-->
       <div class="col-md-8 mt20">
-        <ng-container *ngIf="questions">
+        <ng-container *ngIf="quiz.questionDTOS">
           <h1>On Going Quiz <b>{{quizTitle}}</b></h1>
         </ng-container>
 
-        <mat-card *ngFor="let question of questions;let  i = index" class="mt-2">
+        <mat-card *ngFor="let question of quiz.questionDTOS;let  i = index" class="mt-2">
           <mat-card-content>
-            <p><b>Q {{i + 1}}. </b><span class="ml10" [innerHTML]="question.content"></span></p>
-            <mat-divider></mat-divider>
-            <div class="row mt20">
-              <!--Option 1-->
-              <div class="col-md-6">
-                <input
-                  type="radio"
-                  [value]="question.option1"
-                  [name]="i"
 
-                >
+            <label id="example-radio-group-label">
+              <b><strong>Q{{i + 1}}.</strong><span [innerHTML]="question.content" class="ml10"></span></b>
+            </label>
+            <mat-radio-group
+              aria-labelledby="example-radio-group-label"
+              class="example-radio-group"
+              [(ngModel)]="question.answer">
+              <mat-radio-button class="example-radio-button" [value]="question.option1">
                 {{question.option1}}
-              </div>
-
-              <!--Option 2-->
-              <div class="col-md-6">
-                <input
-                  type="radio"
-                  [value]="question.option2"
-                  [name]="i"
-                >
+              </mat-radio-button>
+              <mat-radio-button class="example-radio-button" [value]="question.option2">
                 {{question.option2}}
-              </div>
-            </div>
-
-            <div class="row mt20">
-              <!--Option 3-->
-              <div class="col-md-6">
-                <input
-                  type="radio"
-                  [value]="question.option3"
-                  [name]="i"
-                >
+              </mat-radio-button>
+              <mat-radio-button class="example-radio-button" [value]="question.option3">
                 {{question.option3}}
-              </div>
-
-              <!--Option 4-->
-              <div class="col-md-6">
-                <input
-                  type="radio"
-                  [value]="question.option4"
-                  [name]="i"
-                >
+              </mat-radio-button>
+              <mat-radio-button class="example-radio-button" [value]="question.option4">
                 {{question.option4}}
-              </div>
-            </div>
+              </mat-radio-button>
+            </mat-radio-group>
+
           </mat-card-content>
         </mat-card>
 
         <div class="container text-center mt20 mb20">
-          <button mat-raised-button color="primary">Submit Quiz</button>
+          <button mat-raised-button color="primary" (click)="submitQuiz()">Submit Quiz</button>
         </div>
 
       </div>
@@ -74,3 +50,5 @@
     </div>
   </div>
 </div>
+
+{{quiz   | json}}

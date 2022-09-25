@@ -18,13 +18,10 @@ export class ViewQuizzesComponent implements OnInit {
       maxMarks: 0,
       numberOfQuestions: 0,
       active: true,
+      author: '',
       categoryDTO: {
         id: 0,
         title: ''
-      },
-      userDTO: {
-        id: 0,
-        username: ''
       }
     }
   ]

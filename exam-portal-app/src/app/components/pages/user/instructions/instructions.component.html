@@ -15,7 +15,7 @@
 
           <mat-card-content>
             <h1>{{quiz.title}}</h1>
-            <p>{{quiz.description}}</p>
+            <p [innerHTML]="quiz.description"></p>
             <mat-divider></mat-divider>
             <br>
             <h1>Important instructions</h1>

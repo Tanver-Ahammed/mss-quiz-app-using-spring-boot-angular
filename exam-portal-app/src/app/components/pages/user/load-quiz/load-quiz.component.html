@@ -14,7 +14,7 @@
             </mat-card-subtitle>
           </mat-card-header>
           <mat-card-content>
-            <p class="truncate">{{quiz.description}}</p>
+            <p class="truncate" [innerHTML]="quiz.description"></p>
           </mat-card-content>
           <mat-card-actions>
             <button mat-raised-button color="primary">View</button>

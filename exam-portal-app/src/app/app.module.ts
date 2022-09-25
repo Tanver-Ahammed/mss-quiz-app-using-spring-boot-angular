@@ -43,6 +43,8 @@ import { UserWelcomeComponent } from './components/pages/user/user-welcome/user-
 import { LoadQuizComponent } from './components/pages/user/load-quiz/load-quiz.component';
 import { InstructionsComponent } from './components/pages/user/instructions/instructions.component';
 import { StartQuizComponent } from './components/pages/user/start-quiz/start-quiz.component';
+import {MatRadioModule} from "@angular/material/radio";
+import {MatGridListModule} from "@angular/material/grid-list";
 
 @NgModule({
   declarations: [
@@ -91,6 +93,8 @@ import { StartQuizComponent } from './components/pages/user/start-quiz/start-qui
     MatOptionModule,
     ReactiveFormsModule,
     CKEditorModule,
+    MatRadioModule,
+    MatGridListModule,
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

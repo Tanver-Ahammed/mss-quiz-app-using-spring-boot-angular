@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "quizzes")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -33,9 +34,7 @@ public class Quiz {
 
     private boolean isActive = false;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id_fk", referencedColumnName = "id")
-    private User user;
+    private String author;
 
     @ManyToOne
     @JoinColumn(name = "category_id_fk", referencedColumnName = "id")

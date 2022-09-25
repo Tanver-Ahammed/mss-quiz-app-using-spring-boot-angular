@@ -1,10 +1,8 @@
 package com.exam.portal.services.impl;
 
-import com.exam.portal.dto.UserDTO;
 import com.exam.portal.dto.quiz.CategoryDTO;
 import com.exam.portal.dto.quiz.QuestionDTO;
 import com.exam.portal.dto.quiz.QuizDTO;
-import com.exam.portal.entities.User;
 import com.exam.portal.entities.quiz.Category;
 import com.exam.portal.entities.quiz.Question;
 import com.exam.portal.entities.quiz.Quiz;
@@ -68,10 +66,9 @@ public class QuizServiceImpl implements QuizService {
     }
 
     @Override
-    public List<QuizDTO> getAllQuizzesByUserId(Long userId) {
-        User user = this.userService.getUserById(userId);
+    public List<QuizDTO> getAllQuizzesByUserId(String username) {
         return this.quizRepository
-                .findByUser(user)
+                .findByAuthor(username)
                 .stream()
                 .map(this::quizToQuizDTO)
                 .collect(Collectors.toList());
@@ -113,16 +110,13 @@ public class QuizServiceImpl implements QuizService {
     public QuizDTO quizToQuizDTO(Quiz quiz) {
         QuizDTO quizDTO = this.modelMapper.map(quiz, QuizDTO.class);
         CategoryDTO categoryDTO = this.modelMapper.map(quiz.getCategory(), CategoryDTO.class);
-        UserDTO userDTO = this.modelMapper.map(quiz.getUser(), UserDTO.class);
         List<QuestionDTO> questionDTOS = quiz
                 .getQuestions()
                 .stream()
-                .map(question -> this.modelMapper.map(question, QuestionDTO.class))
+                .map(this::questionToQuestionDTO)
                 .collect(Collectors.toList());
         quizDTO.setQuestionDTOS(questionDTOS);
         quizDTO.setCategoryDTO(categoryDTO);
-        quizDTO.setUserDTO(userDTO);
-        System.err.println(quiz.getUser().getUsername());
         return quizDTO;
     }
 
@@ -138,6 +132,13 @@ public class QuizServiceImpl implements QuizService {
         quiz.setQuestions(questions);
         quiz.setCategory(category);
         return quiz;
+    }
+
+    // question to questionDTO
+    public QuestionDTO questionToQuestionDTO(Question question) {
+        QuestionDTO questionDTO = this.modelMapper.map(question, QuestionDTO.class);
+        questionDTO.setAnswer(null);
+        return questionDTO;
     }
 
 }

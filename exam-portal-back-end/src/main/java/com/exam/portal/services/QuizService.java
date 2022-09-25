@@ -16,7 +16,7 @@ public interface QuizService {
 
     List<QuizDTO> getAllQuizzesByCategoryId(Long categoryId);
 
-    List<QuizDTO> getAllQuizzesByUserId(Long userId);
+    List<QuizDTO> getAllQuizzesByUserId(String username);
 
     List<QuizDTO> getAllActiveQuizzes();
 

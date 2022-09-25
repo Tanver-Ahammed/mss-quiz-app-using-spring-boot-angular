@@ -27,7 +27,7 @@ public class QuizDTO {
 
     private boolean isActive = false;
 
-    private UserDTO userDTO;
+    private String author;
 
     private CategoryDTO categoryDTO;
 
