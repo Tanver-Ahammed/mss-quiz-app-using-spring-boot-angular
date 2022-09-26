@@ -3,6 +3,7 @@ import {LocationStrategy} from "@angular/common";
 import {ActivatedRoute} from "@angular/router";
 import Swal from "sweetalert2";
 import {QuizService} from "../../../../services/quiz.service";
+import {UserSubmitQuizService} from "../../../../services/user-submit-quiz.service";
 
 @Component({
   selector: 'app-start-quiz',
@@ -14,10 +15,12 @@ export class StartQuizComponent implements OnInit {
   quizId: number = 0;
   quizTitle: any = null;
   quiz: any = null;
+  userSubmitQuizResult: any = null;
 
   constructor(private locationStrategy: LocationStrategy,
               private activatedRoute: ActivatedRoute,
-              private quizService: QuizService) {
+              private quizService: QuizService,
+              private userSubmitQuizService: UserSubmitQuizService) {
     // preventing back button in browser
     // @ts-ignore
     history.pushState(null, null, window.location.href);
@@ -43,8 +46,13 @@ export class StartQuizComponent implements OnInit {
     )
   };
 
-  submitQuiz() {
+  userSubmitQuiz() {
     console.log(this.quiz);
+    this.userSubmitQuizService.userSubmitQuiz(this.quiz).subscribe(
+      (data) => {
+        this.userSubmitQuizResult = data;
+      }, (error) => Swal.fire('Error!!', 'Quiz is not submitted!!!', 'error')
+    );
   }
 
 }

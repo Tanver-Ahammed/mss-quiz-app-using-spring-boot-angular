@@ -19,9 +19,9 @@ public class UserQuestionAnswerStore {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String answer;
+    private String userAnswer;
 
-    @OneToOne
+    @OneToOne(orphanRemoval = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Question question;
 
     @ManyToOne

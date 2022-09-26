@@ -26,9 +26,6 @@ public class QuizServiceImpl implements QuizService {
     private CategoryServiceImpl categoryService;
 
     @Autowired
-    private UserServiceImpl userService;
-
-    @Autowired
     private ModelMapper modelMapper;
 
     @Override

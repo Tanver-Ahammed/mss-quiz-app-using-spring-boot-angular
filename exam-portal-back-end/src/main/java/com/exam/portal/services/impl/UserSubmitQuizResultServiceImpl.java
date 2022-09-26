@@ -1,6 +1,7 @@
 package com.exam.portal.services.impl;
 
 import com.exam.portal.dto.quiz.QuizDTO;
+import com.exam.portal.dto.quiz.UserQuestionAnswerStoreDTO;
 import com.exam.portal.dto.quiz.UserSubmitQuizResultDTO;
 import com.exam.portal.entities.User;
 import com.exam.portal.entities.quiz.Question;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserSubmitQuizResultServiceImpl implements UserSubmitQuizResultService {
@@ -32,11 +34,15 @@ public class UserSubmitQuizResultServiceImpl implements UserSubmitQuizResultServ
     private QuestionServiceImpl questionService;
 
     @Autowired
+    private UserQuestionAnswerStoreServiceImpl userQuestionAnswerStoreService;
+
+    @Autowired
     private ModelMapper modelMapper;
 
     // user submit quiz save
     @Override
     public UserSubmitQuizResultDTO saveUserSubmitQuizResult(QuizDTO quizDTO, String username) {
+        UserSubmitQuizResult userSubmitQuizResult = new UserSubmitQuizResult();
         List<UserQuestionAnswerStore> userQuestionAnswerStores = new ArrayList<>();
         int correctAns = 0;
         for (int i = 0; i < quizDTO.getQuestionDTOS().size(); i++) {
@@ -46,13 +52,13 @@ public class UserSubmitQuizResultServiceImpl implements UserSubmitQuizResultServ
                 ++correctAns;
             }
             UserQuestionAnswerStore userQuestionAnswerStore = new UserQuestionAnswerStore();
-            userQuestionAnswerStore.setAnswer(quizDTO.getQuestionDTOS().get(i).getAnswer());
+            userQuestionAnswerStore.setUserSubmitQuizResult(userSubmitQuizResult);
+            userQuestionAnswerStore.setUserAnswer(quizDTO.getQuestionDTOS().get(i).getAnswer());
             userQuestionAnswerStore.setQuestion(question);
             userQuestionAnswerStores.add(userQuestionAnswerStore);
         }
 
         // set user submit quiz result
-        UserSubmitQuizResult userSubmitQuizResult = new UserSubmitQuizResult();
         userSubmitQuizResult.setUserQuestionAnswerStores(userQuestionAnswerStores);
         userSubmitQuizResult.setQuiz(this.quizService.quizDTOToQuiz(quizDTO));
         userSubmitQuizResult.setCorrectQuestions(correctAns);
@@ -97,7 +103,16 @@ public class UserSubmitQuizResultServiceImpl implements UserSubmitQuizResultServ
     public UserSubmitQuizResultDTO userSubmitQuizResultToDTO(UserSubmitQuizResult userSubmitQuizResult) {
         UserSubmitQuizResultDTO userSubmitQuizDTO = this.modelMapper.map(userSubmitQuizResult, UserSubmitQuizResultDTO.class);
         userSubmitQuizDTO.setUserDTO(this.userService.userToUserDTO(userSubmitQuizResult.getUser()));
-        userSubmitQuizDTO.setQuizDTO(this.quizService.quizToQuizDTO(userSubmitQuizResult.getQuiz()));
+        QuizDTO quizDTO = this.quizService.quizToQuizDTO(userSubmitQuizResult.getQuiz());
+        quizDTO.setQuestionDTOS(null);
+        userSubmitQuizDTO.setQuizDTO(quizDTO);
+        List<UserQuestionAnswerStoreDTO> userQuestionAnswerStoreDTOS =
+                userSubmitQuizResult
+                        .getUserQuestionAnswerStores()
+                        .stream()
+                        .map(uqaStore -> this.userQuestionAnswerStoreService.UserQuestionAnswerStoreServiceToDTO(uqaStore))
+                        .collect(Collectors.toList());
+        userSubmitQuizDTO.setUserQuestionAnswerStoreDTOS(userQuestionAnswerStoreDTOS);
         return userSubmitQuizDTO;
     }
 

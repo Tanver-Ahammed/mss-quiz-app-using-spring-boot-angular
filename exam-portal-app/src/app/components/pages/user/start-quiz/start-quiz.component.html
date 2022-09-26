@@ -39,7 +39,7 @@
         </mat-card>
 
         <div class="container text-center mt20 mb20">
-          <button mat-raised-button color="primary" (click)="submitQuiz()">Submit Quiz</button>
+          <button mat-raised-button color="primary" (click)="userSubmitQuiz()">Submit Quiz</button>
         </div>
 
       </div>
@@ -52,3 +52,7 @@
 </div>
 
 {{quiz   | json}}
+
+<div>
+  {{userSubmitQuizResult | json}}
+</div>
