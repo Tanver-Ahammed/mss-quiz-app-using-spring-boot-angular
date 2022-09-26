@@ -45,12 +45,28 @@
       </div>
       <!--progress-->
       <div class="col-md-2">
-        Hi
+        <mat-card style="margin-top: 70px">
+          <mat-card-header>
+            <mat-card-title>Progress</mat-card-title>
+            <mat-card-subtitle>Quiz will be automatic submitted when timer reached <b>0.0</b></mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <h1 class="text-center">{{ getFormatTimer() }}</h1>
+            <mat-spinner
+              mode="determinate"
+              color="accent"
+              style="margin: auto"
+              [value]="timer / (this.quiz.questionDTOS.length * 60) * 100"
+            >
+            </mat-spinner>
+          </mat-card-content>
+        </mat-card>
       </div>
     </div>
   </div>
 </div>
 
+{{timer   | json}}
 {{quiz   | json}}
 
 <div>

@@ -8,6 +8,7 @@ import com.exam.portal.entities.quiz.Question;
 import com.exam.portal.entities.quiz.UserQuestionAnswerStore;
 import com.exam.portal.entities.quiz.UserSubmitQuizResult;
 import com.exam.portal.exception.ResourceNotFoundException;
+import com.exam.portal.repositories.UserRepository;
 import com.exam.portal.repositories.UserSubmitQuizResultRepository;
 import com.exam.portal.services.UserSubmitQuizResultService;
 import org.modelmapper.ModelMapper;
@@ -23,6 +24,9 @@ public class UserSubmitQuizResultServiceImpl implements UserSubmitQuizResultServ
 
     @Autowired
     private UserSubmitQuizResultRepository userSubmitQuizResultRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private UserServiceImpl userService;
@@ -48,7 +52,7 @@ public class UserSubmitQuizResultServiceImpl implements UserSubmitQuizResultServ
         for (int i = 0; i < quizDTO.getQuestionDTOS().size(); i++) {
             long questionId = quizDTO.getQuestionDTOS().get(i).getId();
             Question question = this.questionService.getQuestionById(questionId);
-            if (quizDTO.getQuestionDTOS().get(i).getAnswer().equals(question.getAnswer())) {
+            if (quizDTO.getQuestionDTOS().get(i).getAnswer() != null && quizDTO.getQuestionDTOS().get(i).getAnswer().equals(question.getAnswer())) {
                 ++correctAns;
             }
             UserQuestionAnswerStore userQuestionAnswerStore = new UserQuestionAnswerStore();
@@ -64,7 +68,8 @@ public class UserSubmitQuizResultServiceImpl implements UserSubmitQuizResultServ
         userSubmitQuizResult.setCorrectQuestions(correctAns);
 
         // set user
-        User user = this.modelMapper.map(this.userService.getUserByUsername(username), User.class);
+        User user = this.userRepository.findByUsername(username).orElseThrow(() ->
+                new ResourceNotFoundException("User", username, -1));
         userSubmitQuizResult.setUser(user);
         return this.userSubmitQuizResultToDTO(this.userSubmitQuizResultRepository.save(userSubmitQuizResult));
     }

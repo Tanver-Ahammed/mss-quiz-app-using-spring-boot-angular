@@ -45,6 +45,8 @@ import { InstructionsComponent } from './components/pages/user/instructions/inst
 import { StartQuizComponent } from './components/pages/user/start-quiz/start-quiz.component';
 import {MatRadioModule} from "@angular/material/radio";
 import {MatGridListModule} from "@angular/material/grid-list";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {NgxUiLoaderHttpModule, NgxUiLoaderModule} from "ngx-ui-loader";
 
 @NgModule({
   declarations: [
@@ -71,7 +73,7 @@ import {MatGridListModule} from "@angular/material/grid-list";
     UserWelcomeComponent,
     LoadQuizComponent,
     InstructionsComponent,
-    StartQuizComponent
+    StartQuizComponent,
   ],
   imports: [
     BrowserModule,
@@ -95,6 +97,11 @@ import {MatGridListModule} from "@angular/material/grid-list";
     CKEditorModule,
     MatRadioModule,
     MatGridListModule,
+    MatProgressSpinnerModule,
+    NgxUiLoaderModule,
+    NgxUiLoaderHttpModule.forRoot({
+      showForeground: true
+    })
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
