@@ -46,6 +46,8 @@ public class UserSubmitQuizResultServiceImpl implements UserSubmitQuizResultServ
     // user submit quiz save
     @Override
     public UserSubmitQuizResultDTO saveUserSubmitQuizResult(QuizDTO quizDTO, String username) {
+        if (!quizDTO.isActive())
+            throw new RuntimeException("Your Quiz is not Active");
         UserSubmitQuizResult userSubmitQuizResult = new UserSubmitQuizResult();
         List<UserQuestionAnswerStore> userQuestionAnswerStores = new ArrayList<>();
         int correctAns = 0;

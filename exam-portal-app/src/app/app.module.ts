@@ -47,6 +47,7 @@ import {MatRadioModule} from "@angular/material/radio";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {NgxUiLoaderHttpModule, NgxUiLoaderModule} from "ngx-ui-loader";
+import { UserSubmitQuizResultComponent } from './components/pages/common/user-submit-quiz-result/user-submit-quiz-result.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import {NgxUiLoaderHttpModule, NgxUiLoaderModule} from "ngx-ui-loader";
     LoadQuizComponent,
     InstructionsComponent,
     StartQuizComponent,
+    UserSubmitQuizResultComponent,
   ],
   imports: [
     BrowserModule,

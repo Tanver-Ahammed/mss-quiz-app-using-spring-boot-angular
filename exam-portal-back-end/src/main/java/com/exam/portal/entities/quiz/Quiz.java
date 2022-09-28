@@ -44,4 +44,7 @@ public class Quiz {
     @JsonIgnore
     private List<Question> questions = new ArrayList<>();
 
+    @OneToMany(mappedBy = "quiz", orphanRemoval = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<UserSubmitQuizResult> userSubmitQuizResults = new ArrayList<>();
+
 }

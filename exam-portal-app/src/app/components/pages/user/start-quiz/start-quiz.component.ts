@@ -14,7 +14,33 @@ export class StartQuizComponent implements OnInit {
 
   quizId: number = 0;
   quizTitle: any = null;
-  quiz: any = null;
+  isSubmittedQuiz: boolean = false;
+
+  quiz: any = {
+    id: '',
+    title: '',
+    description: '',
+    maxMarks: '',
+    numberOfQuestions: '',
+    active: true,
+    author: '',
+    categoryDTO: {
+      id: '',
+      title: '',
+    },
+    questionDTOS: [
+      {
+        id: '',
+        content: '',
+        image: '',
+        answer: '',
+        option1: '',
+        option2: '',
+        option3: '',
+        option4: '',
+      }
+    ]
+  };
   userSubmitQuizResult: any = null;
   timer: any;
 
@@ -33,16 +59,19 @@ export class StartQuizComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.quizId = this.activatedRoute.snapshot.params['quizId'];
-    this.quizTitle = this.activatedRoute.snapshot.params['quizTitle'];
-    this.loadQuestions();
+    this.activatedRoute.params.subscribe((params) => {
+      this.quizId = params['quizId'];
+      this.quizTitle = params['quizTitle'];
+      this.loadQuestions();
+    })
+
   }
 
   loadQuestions() {
     this.quizService.fetchSingleQuiz(this.quizId).subscribe(
       (data) => {
         this.quiz = data;
-        this.timer = this.quiz.questionDTOS.length * 60;
+        this.timer = this.quiz.questionDTOS.length * 60 / 5;
         console.log(this.quiz)
         this.startTimer();
       },
@@ -50,12 +79,11 @@ export class StartQuizComponent implements OnInit {
     )
   };
 
-  userSubmitQuiz() {
-    Swal.fire('Quiz Submit', 'Are want to submit Quiz?', 'info')
+  submitQuiz() {
     this.userSubmitQuizService.userSubmitQuiz(this.quiz).subscribe(
       (data) => {
         this.userSubmitQuizResult = data;
-        // this.router.navigateByUrl(`/user/quiz/result/`);
+        this.router.navigateByUrl(`/submit/quiz/result/${this.userSubmitQuizResult.id}`);
       }, (error) => {
         Swal.fire('Error!!', 'Quiz is not submitted!!!', 'error');
         this.router.navigateByUrl(`/user/instructions/${this.quizId}/`);
@@ -63,14 +91,33 @@ export class StartQuizComponent implements OnInit {
     );
   }
 
+  userSubmitQuiz() {
+    Swal.fire({
+      title: 'Do you want to Submit the Quiz?',
+      showCancelButton: true,
+      confirmButtonText: 'Submit Quiz',
+      icon: 'info'
+    }).then((e) => {
+      if (e.isConfirmed) {
+        this.isSubmittedQuiz = true;
+        this.submitQuiz();
+      }
+    });
+  }
+
+  evalQuizByTimer() {
+    this.submitQuiz();
+  }
+
   startTimer() {
     let time: any = window.setInterval(() => {
       if (this.timer <= 0) {
-        this.userSubmitQuiz();
+        this.evalQuizByTimer();
         clearInterval(time);
-      } else {
+      } else if (this.isSubmittedQuiz)
+        clearInterval(time);
+      else
         this.timer--;
-      }
     }, 1000);
   }
 

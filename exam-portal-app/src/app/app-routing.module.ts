@@ -23,6 +23,9 @@ import {UserWelcomeComponent} from "./components/pages/user/user-welcome/user-we
 import {LoadQuizComponent} from "./components/pages/user/load-quiz/load-quiz.component";
 import {InstructionsComponent} from "./components/pages/user/instructions/instructions.component";
 import {StartQuizComponent} from "./components/pages/user/start-quiz/start-quiz.component";
+import {
+  UserSubmitQuizResultComponent
+} from "./components/pages/common/user-submit-quiz-result/user-submit-quiz-result.component";
 
 const routes: Routes = [
   {
@@ -104,12 +107,15 @@ const routes: Routes = [
       {
         path: 'instructions/:quizId',
         component: InstructionsComponent
-      },
-
+      }
     ]
   }, {
     path: 'start-quiz/:quizId/:quizTitle',
     component: StartQuizComponent,
+    canActivate: [NormalGuard]
+  }, {
+    path: 'submit/quiz/result/:usqrId',
+    component: UserSubmitQuizResultComponent,
     canActivate: [NormalGuard]
   }
 ];

@@ -1,6 +1,5 @@
 package com.exam.portal.dto.quiz;
 
-import com.exam.portal.dto.UserDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,5 +31,7 @@ public class QuizDTO {
     private CategoryDTO categoryDTO;
 
     private List<QuestionDTO> questionDTOS = new ArrayList<>();
+
+    private List<UserSubmitQuizResultDTO> userSubmitQuizResultDTOS = new ArrayList<>();
 
 }

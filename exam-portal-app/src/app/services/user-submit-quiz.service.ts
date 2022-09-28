@@ -15,4 +15,9 @@ export class UserSubmitQuizService {
     return this.http.post(`${baseUrl}/user/submit/quiz/`, quiz);
   }
 
+  // get user submit quiz by id
+  public fetchSubmitQuizById(usqrId: number) {
+    return this.http.get(`${baseUrl}/user/submit/quiz/${usqrId}`);
+  }
+
 }

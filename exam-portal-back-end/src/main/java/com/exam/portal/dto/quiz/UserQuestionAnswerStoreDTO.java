@@ -1,6 +1,5 @@
 package com.exam.portal.dto.quiz;
 
-import com.exam.portal.entities.quiz.UserSubmitQuizResult;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
