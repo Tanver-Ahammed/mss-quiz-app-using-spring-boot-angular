@@ -16,7 +16,7 @@ export class SideBarComponent implements OnInit {
   // logout method
   logout() {
     this.loginService.logout();
-    window.location.reload();
+    window.location.href = '/';
   }
 
 }

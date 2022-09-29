@@ -1,6 +1,7 @@
 package com.exam.portal.dto;
 
 import com.exam.portal.dto.quiz.UserSubmitQuizResultDTO;
+import com.exam.portal.entities.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,7 +36,7 @@ public class UserDTO {
 
     private boolean isEnable;
 
-    private Set<RoleDTO> roleDTOS = new HashSet<>();
+    private Set<Role> roles = new HashSet<>();
 
     private List<UserSubmitQuizResultDTO> userSubmitQuizResultDTOS = new ArrayList<>();
 

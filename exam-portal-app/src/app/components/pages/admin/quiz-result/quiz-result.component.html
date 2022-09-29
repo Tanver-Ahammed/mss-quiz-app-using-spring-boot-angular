@@ -1,53 +1,64 @@
 <mat-card>
-  <mat-card-header class="mb-1">
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>{{quizTitle}}</mat-card-title>
-    <mat-card-subtitle *ngIf="userSubmitQuizResults">
-      {{userSubmitQuizResults[0].quizDTO.categoryDTO.title}}
-    </mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
+  <div id="printableArea">
+    <mat-card-header class="mb-1">
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{quizTitle}}</mat-card-title>
+      <mat-card-subtitle *ngIf="userSubmitQuizResults">
+        {{userSubmitQuizResults[0].quizDTO.categoryDTO.title}}
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
 
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
-      <!-- user id -->
-      <ng-container matColumnDef="user-id">
-        <th mat-header-cell *matHeaderCellDef> ID</th>
-        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-      </ng-container>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+        <!-- user id -->
+        <ng-container matColumnDef="user-id">
+          <th mat-header-cell *matHeaderCellDef> ID</th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
 
-      <!-- user name -->
-      <ng-container matColumnDef="user-name">
-        <th mat-header-cell *matHeaderCellDef> Name</th>
-        <td mat-cell *matCellDef="let element"> {{element.userDTO.firstName}} {{element.userDTO.lastName}} </td>
-      </ng-container>
+        <!-- user name -->
+        <ng-container matColumnDef="user-name">
+          <th mat-header-cell *matHeaderCellDef> Name</th>
+          <td mat-cell *matCellDef="let element"> {{element.userDTO.firstName}} {{element.userDTO.lastName}} </td>
+        </ng-container>
 
-      <!-- user correct answer -->
-      <ng-container matColumnDef="correct-answer">
-        <th mat-header-cell *matHeaderCellDef> Correct Answer</th>
-        <td mat-cell *matCellDef="let element"> {{element.correctQuestions}} </td>
-      </ng-container>
+        <!-- user correct answer -->
+        <ng-container matColumnDef="correct-answer">
+          <th mat-header-cell *matHeaderCellDef> Correct Answer</th>
+          <td mat-cell *matCellDef="let element"> {{element.correctQuestions}} </td>
+        </ng-container>
 
-      <!-- user success percentage -->
-      <ng-container matColumnDef="success-percentage">
-        <th mat-header-cell *matHeaderCellDef> Success Percentage</th>
-        <td mat-cell
-            *matCellDef="let element"> {{element.correctQuestions / element.quizDTO.numberOfQuestions * 100}} %
-        </td>
-      </ng-container>
+        <!-- user success percentage -->
+        <ng-container matColumnDef="success-percentage">
+          <th mat-header-cell *matHeaderCellDef> Success Percentage</th>
+          <td mat-cell
+              *matCellDef="let element"> {{element.correctQuestions / element.quizDTO.numberOfQuestions * 100}} %
+          </td>
+        </ng-container>
 
-      <!-- user success percentage -->
-      <ng-container matColumnDef="quiz-result">
-        <th mat-header-cell *matHeaderCellDef> Go to Quiz Result</th>
-        <td mat-cell *matCellDef="let element">
-          <button mat-raised-button [routerLink]="'/submit/quiz/result/' + element.id">Goto Result</button>
-        </td>
-      </ng-container>
+        <!-- user success percentage -->
+        <ng-container matColumnDef="quiz-result">
+          <th mat-header-cell *matHeaderCellDef> Go to Quiz Result</th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-raised-button [routerLink]="'/submit/quiz/result/' + element.id" color="primary">
+              Goto Result
+            </button>
+          </td>
+        </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
 
-  </mat-card-content>
+    </mat-card-content>
+
+    <div class="container text-center mt20 mb10">
+      <button mat-raised-button color="accent" (click)="printPage('printableArea')">print</button>
+    </div>
+
+  </div>
+
+
 </mat-card>
 
 

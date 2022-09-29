@@ -72,7 +72,7 @@ export class LoginService {
     let user = this.getUserDetails();
     if (user == null)
       return;
-    return user.roleDTOS[0].roleName;
+    return user.roles[0].roleName;
   }
 
 }

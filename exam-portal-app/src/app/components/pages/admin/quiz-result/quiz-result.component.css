@@ -5,30 +5,23 @@
 
 table {
   width: 100%;
+  border-collapse: collapse;
 }
 
-.demo-table {
-  width: 100%;
+th {
+  /* row border */
+  border-bottom: 1px solid #ffa600;
 }
 
-.mat-column-demo-position {
-  width: 32px;
-  border-right: 1px solid currentColor;
-  padding-right: 24px;
-  text-align: center;
+td.mat-cell {
+  /* row padding */
+  padding: 10px 0;
+  border: none;
 }
 
-.mat-column-demo-name {
-  padding-left: 16px;
-  font-size: 20px;
+tr.mat-row {
+  /* row border */
+  border: 1px solid #cafff7;
 }
 
-.mat-column-demo-weight {
-  font-style: italic;
-}
 
-.mat-column-demo-symbol {
-  width: 32px;
-  text-align: center;
-  font-weight: bold;
-}

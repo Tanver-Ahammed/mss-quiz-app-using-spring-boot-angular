@@ -12,6 +12,7 @@ export class QuizResultComponent implements OnInit {
 
   quizId: number = 0;
   quizTitle: string = '';
+  dataSource: any;
   userSubmitQuizResults: any = [
     {
       id: '',
@@ -63,6 +64,8 @@ export class QuizResultComponent implements OnInit {
 
   /*****************************************/
   displayedColumns: string[] = ['user-id', 'user-name', 'correct-answer', 'success-percentage', 'quiz-result'];
-  // dataSource = ELEMENT_DATA;
-  dataSource = this.userSubmitQuizResults;
+
+  printPage(divName:any) {
+    window.print();
+  }
 }

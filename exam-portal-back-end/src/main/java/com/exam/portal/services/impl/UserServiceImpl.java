@@ -1,6 +1,5 @@
 package com.exam.portal.services.impl;
 
-import com.exam.portal.dto.RoleDTO;
 import com.exam.portal.dto.UserDTO;
 import com.exam.portal.entities.Role;
 import com.exam.portal.entities.User;
@@ -94,12 +93,8 @@ public class UserServiceImpl implements UserService {
     }
 
     public UserDTO userToUserDTO(User user) {
-        Set<RoleDTO> roleDTOS = user.getRoles().stream().map(role ->
-                        this.modelMapper.map(role, RoleDTO.class))
-                .collect(Collectors.toSet());
         UserDTO userDTO = this.modelMapper.map(user, UserDTO.class);
         userDTO.setPassword(null);
-        userDTO.setRoleDTOS(roleDTOS);
         return userDTO;
     }
 

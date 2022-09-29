@@ -90,8 +90,7 @@ public class UserSubmitQuizResultServiceImpl implements UserSubmitQuizResultServ
         UserDTO userDTO = this.userService.getUserByUsername(principal.getName());
         UserSubmitQuizResult userSubmitQuizResult = this.getUserSubmitQuizResultById(usqId);
         Role role = this.roleService.getRoleById(2L);
-        boolean f = userSubmitQuizResult.getUser().getRoles().contains(role);
-        if (userDTO.getRoleDTOS().contains(role) &&
+        if (userDTO.getRoles().contains(role) &&
                 !Objects.equals(userDTO.getId(), userSubmitQuizResult.getUser().getId())) {
             throw new RuntimeException("You are not valid user");
         }
