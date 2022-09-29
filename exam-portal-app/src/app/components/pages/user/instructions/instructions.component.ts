@@ -51,7 +51,7 @@ export class InstructionsComponent implements OnInit {
       icon: 'info'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.router.navigateByUrl('/start-quiz/' + this.quizId + '/' + this.quiz.title);
+        this.router.navigate([`/start-quiz/${this.quizId}/${this.quiz.title}`]);
       } else {
         Swal.fire('You are not interested Quiz!!!', 'Go Back', 'error');
       }

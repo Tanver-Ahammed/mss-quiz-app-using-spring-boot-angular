@@ -26,6 +26,7 @@ import {StartQuizComponent} from "./components/pages/user/start-quiz/start-quiz.
 import {
   UserSubmitQuizResultComponent
 } from "./components/pages/common/user-submit-quiz-result/user-submit-quiz-result.component";
+import {QuizResultComponent} from "./components/pages/admin/quiz-result/quiz-result.component";
 
 const routes: Routes = [
   {
@@ -83,9 +84,15 @@ const routes: Routes = [
       }, {
         path: 'question/update/:questionId',
         component: UpdateQuizQuestionComponent
-      }
+      }, {
+        path: 'quiz-results/:quizId/:quizTitle',
+        component: QuizResultComponent
+      },
     ]
-
+  },
+  {
+    path: 'submit/quiz/result/:usqrId',
+    component: UserSubmitQuizResultComponent
   },
   {
     path: 'user',

@@ -2,3 +2,7 @@
   background-image: url('../../../../../assets/user.png');
   background-size: cover;
 }
+
+.mb10 {
+  margin-bottom: 10px;
+}

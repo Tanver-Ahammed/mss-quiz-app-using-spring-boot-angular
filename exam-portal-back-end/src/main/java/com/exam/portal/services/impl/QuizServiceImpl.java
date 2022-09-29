@@ -35,7 +35,14 @@ public class QuizServiceImpl implements QuizService {
 
     @Override
     public QuizDTO updateQuiz(QuizDTO quizDTO) {
-        return this.quizToQuizDTO(this.quizRepository.save(this.quizDTOToQuiz(quizDTO)));
+        Quiz quiz = this.getQuizById(quizDTO.getId());
+        quiz.setTitle(quizDTO.getTitle());
+        quiz.setDescription(quizDTO.getDescription());
+        quiz.setMaxMarks(quizDTO.getMaxMarks());
+        quiz.setNumberOfQuestions(quizDTO.getNumberOfQuestions());
+        quiz.setActive(quiz.isActive());
+        quiz.setCategory(this.categoryService.categoryDTOToCategory(quizDTO.getCategoryDTO()));
+        return this.quizToQuizDTO(this.quizRepository.save(quiz));
     }
 
     @Override

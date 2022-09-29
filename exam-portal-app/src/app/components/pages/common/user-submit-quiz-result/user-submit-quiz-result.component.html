@@ -1,44 +1,55 @@
 <div class="bootstrap-wrapper">
   <div class="container-fluid">
     <div class="row">
-      <!--instructions-->
+      <!--Participant-->
       <div class="col-md-2">
-        <h2>Instructions</h2>
+        <h2>Participant</h2>
+        <mat-card>
+          <mat-card-header class="mb-1">
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{user.firstName}} {{user.lastName}}</mat-card-title>
+            <mat-card-subtitle>{{user.about}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p><u>{{user.email}}</u></p>
+            <p>{{user.phone}}</p>
+          </mat-card-content>
+        </mat-card>
+
+
       </div>
       <!--questions-->
       <div class="col-md-8 mt20">
         <ng-container *ngIf="userQuestionAnswers">
-          <mat-card class="mb20">
-            <mat-card-header class="mb-1">
-              <div mat-card-avatar class="example-header-image"></div>
-              <mat-card-title>{{user.firstName}} {{user.lastName}}</mat-card-title>
-              <mat-card-subtitle>{{user.about}}</mat-card-subtitle>
-              <mat-card-subtitle><u>{{user.email}}</u></mat-card-subtitle>
-              <mat-card-subtitle>{{user.phone}}</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content class="text-center">
-              <h1>Quiz Title: <b>{{quiz.title}}</b></h1>
-              <p>Quiz Author: <b>{{quiz.author}}</b></p>
-              <p>Quiz Category: <b>{{quiz.categoryDTO.title}}</b></p>
+          <mat-card class="mb20" style="background-color: #dffdff">
+            <mat-card-content class="text-center" style="background-color: #fff2e2">
+              <h1><strong>Quiz Results</strong></h1>
               <mat-divider></mat-divider>
-              <h1>Quiz Results</h1>
-              <p>Total Questions: <b>{{userQuestionAnswers.length}}</b></p>
-              <p>Correct Answer: <b>{{quizResult.correctQuestions}}</b></p>
-              <p>Marks Got: <b>{{quizResult.correctQuestions / userQuestionAnswers.length * 100}} %</b></p>
+              <h3>Total Questions: <b>{{userQuestionAnswers.length}}</b></h3>
+              <h3>Correct Answer: <b>{{quizResult.correctQuestions}}</b></h3>
+              <h3>Marks Got: <b>{{quizResult.correctQuestions / userQuestionAnswers.length * 100}} %</b></h3>
             </mat-card-content>
           </mat-card>
         </ng-container>
 
         <mat-card *ngFor="let questionAnswer of userQuestionAnswers;let  i = index" class="mt20">
           <mat-card-content>
-            <p><b>Q{{i + 1}}.</b><span class="m-lg-3" [innerHTML]="questionAnswer.questionDTO.content"></span></p>
+            <p>
+              <b style="color: green" *ngIf="questionAnswer.questionDTO.answer == questionAnswer.userAnswer">
+                Q{{i + 1}}.
+              </b>
+              <b style="color: red" *ngIf="questionAnswer.questionDTO.answer != questionAnswer.userAnswer">
+                Q{{i + 1}}.
+              </b>
+              <span class="m-lg-3" [innerHTML]="questionAnswer.questionDTO.content"></span>
+            </p>
             <mat-divider></mat-divider>
             <br>
             <div class="row mt-2">
               <div class="col-md-6">
                 <input
                   type="radio"
-                  [value]="questionAnswer.questionDTO.answer"
+                  [value]="questionAnswer.userAnswer"
                   [(ngModel)]="questionAnswer.questionDTO.option1"
                   disabled
                 >
@@ -47,7 +58,7 @@
               <div class="col-md-6">
                 <input
                   type="radio"
-                  [value]="questionAnswer.questionDTO.answer"
+                  [value]="questionAnswer.userAnswer"
                   [(ngModel)]="questionAnswer.questionDTO.option2"
                   disabled
                 >
@@ -58,7 +69,7 @@
               <div class="col-md-6">
                 <input
                   type="radio"
-                  [value]="questionAnswer.questionDTO.answer"
+                  [value]="questionAnswer.userAnswer"
                   [(ngModel)]="questionAnswer.questionDTO.option3"
                   disabled
                 >
@@ -67,7 +78,7 @@
               <div class="col-md-6">
                 <input
                   type="radio"
-                  [value]="questionAnswer.questionDTO.answer"
+                  [value]="questionAnswer.userAnswer"
                   [(ngModel)]="questionAnswer.questionDTO.option4"
                   disabled
                 >
@@ -75,22 +86,31 @@
               </div>
             </div>
           </mat-card-content>
+          <mat-divider></mat-divider>
+          <mat-card class="mt20" style="background-color: #e0fff3">
+            <div class="row">
+              <div class="col-md-6">Participant Answer: <b>{{questionAnswer.userAnswer}}</b></div>
+              <div class="col-md-6">Correct Answer: <b>{{questionAnswer.questionDTO.answer}}</b></div>
+            </div>
+          </mat-card>
         </mat-card>
 
-        <div class="container text-center mt20 mb20">
+        <div class="container text-center mt20 mb10">
           <button mat-raised-button color="accent" (click)="printPage()">print</button>
         </div>
-
       </div>
-      <!--progress-->
-      <div class="col-md-2">
+
+      <!--quiz info-->
+      <div class="col-md-2 text-center">
         <mat-card style="margin-top: 70px">
           <mat-card-header>
-            <mat-card-title>Progress</mat-card-title>
-            <mat-card-subtitle>Quiz will be automatic submitted when timer reached <b>0.0</b></mat-card-subtitle>
+            <mat-card-title>Quiz Info</mat-card-title>
           </mat-card-header>
+          <mat-divider></mat-divider>
           <mat-card-content>
-
+            <h1>Quiz Title: <b>{{quiz.title}}</b></h1>
+            <p>Quiz Author: <b>{{quiz.author}}</b></p>
+            <p>Quiz Category: <b>{{quiz.categoryDTO.title}}</b></p>
           </mat-card-content>
         </mat-card>
       </div>
@@ -98,8 +118,4 @@
   </div>
 </div>
 
-
-<div>
-  {{userSubmitQuizResult | json}}
-</div>
 

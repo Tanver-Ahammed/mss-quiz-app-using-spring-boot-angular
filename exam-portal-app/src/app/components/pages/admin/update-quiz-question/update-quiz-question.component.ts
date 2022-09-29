@@ -16,7 +16,20 @@ export class UpdateQuizQuestionComponent implements OnInit {
   public Editor = ClassicEditor;
 
   questionId: number = 0;
-  question: any = null;
+  question: any = {
+    id: '',
+    content: '',
+    image: '',
+    answer: '',
+    option1: '',
+    option2: '',
+    option3: '',
+    option4: '',
+    quizDTO: {
+      id: '',
+      title: ''
+    }
+  };
 
   constructor(private activatedRoute: ActivatedRoute,
               private questionService: QuestionService,
@@ -47,7 +60,7 @@ export class UpdateQuizQuestionComponent implements OnInit {
     this.questionService.updateQuestion(this.question).subscribe(
       (data: any) => {
         Swal.fire('Success!!', 'Question is updated Successfully...', 'success')
-          .then(e => this.router.navigateByUrl(`/admin/view-questions/${this.question.quizDTO.id}/${this.question.quizDTO.title}`));
+          .then(e => this.router.navigate([`/admin/view-questions/${this.question.quizDTO.id}/${this.question.quizDTO.title}`]));
       },
       (error: any) => {
         Swal.fire('Error!!', 'Server Error!!! Try Again...', 'error');

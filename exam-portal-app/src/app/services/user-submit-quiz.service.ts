@@ -12,12 +12,18 @@ export class UserSubmitQuizService {
 
   // user submit user
   public userSubmitQuiz(quiz: any) {
-    return this.http.post(`${baseUrl}/user/submit/quiz/`, quiz);
+    return this.http.post(`${baseUrl}/user/submit/`, quiz);
   }
 
   // get user submit quiz by id
   public fetchSubmitQuizById(usqrId: number) {
-    return this.http.get(`${baseUrl}/user/submit/quiz/${usqrId}`);
+    return this.http.get(`${baseUrl}/user/submit/${usqrId}`);
   }
+
+  // get user submit quiz by quiz id
+  public fetchSubmitQuizByQuizId(quizId: number) {
+    return this.http.get(`${baseUrl}/user/submit/quiz/${quizId}`);
+  }
+
 
 }

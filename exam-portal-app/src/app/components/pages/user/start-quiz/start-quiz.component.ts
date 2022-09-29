@@ -71,7 +71,7 @@ export class StartQuizComponent implements OnInit {
     this.quizService.fetchSingleQuiz(this.quizId).subscribe(
       (data) => {
         this.quiz = data;
-        this.timer = this.quiz.questionDTOS.length * 60 / 5;
+        this.timer = this.quiz.questionDTOS.length * 60;
         console.log(this.quiz)
         this.startTimer();
       },
@@ -83,10 +83,10 @@ export class StartQuizComponent implements OnInit {
     this.userSubmitQuizService.userSubmitQuiz(this.quiz).subscribe(
       (data) => {
         this.userSubmitQuizResult = data;
-        this.router.navigateByUrl(`/submit/quiz/result/${this.userSubmitQuizResult.id}`);
+        this.router.navigate([`/submit/quiz/result/${this.userSubmitQuizResult.id}`]);
       }, (error) => {
         Swal.fire('Error!!', 'Quiz is not submitted!!!', 'error');
-        this.router.navigateByUrl(`/user/instructions/${this.quizId}/`);
+        this.router.navigate([`/user/instructions/${this.quizId}/`]);
       }
     );
   }

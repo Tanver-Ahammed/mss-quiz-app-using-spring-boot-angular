@@ -19,6 +19,11 @@
       mat-flat-button color="accent">
       Questions
     </button>
+    <button class="ml20"
+      [routerLink]="'/admin/quiz-results/' + quiz.id + '/' + quiz.title"
+      mat-flat-button color="accent">
+      Results
+    </button>
     <button mat-stroked-button color="accent" class="ml20">
       Max Marks: {{ quiz.maxMarks }}
     </button>

@@ -1,7 +1,6 @@
 package com.exam.portal.entities;
 
-import com.exam.portal.entities.quiz.Quiz;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.exam.portal.entities.quiz.UserSubmitQuizResult;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -42,12 +41,15 @@ public class User implements Serializable {
 
     private boolean isEnable;
 
-    //    private String role;
+    // private String role;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
     )
     private Set<Role> roles = new HashSet<>();
+
+    @OneToMany(mappedBy = "user", orphanRemoval = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<UserSubmitQuizResult> userSubmitQuizResults = new ArrayList<>();
 
 }

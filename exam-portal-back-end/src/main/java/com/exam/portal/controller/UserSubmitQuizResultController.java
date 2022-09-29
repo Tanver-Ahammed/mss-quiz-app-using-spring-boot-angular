@@ -8,9 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 
 @RestController
-@RequestMapping(path = "/user/submit/quiz")
+@RequestMapping(path = "/user/submit/")
 @CrossOrigin("http://localhost:4200/")
 public class UserSubmitQuizResultController {
 
@@ -31,8 +32,15 @@ public class UserSubmitQuizResultController {
     // get user submit quiz by id
     @GetMapping(path = "/{userSubmitQuizResultId}")
     public ResponseEntity<UserSubmitQuizResultDTO> getUserSubmitQuizResultById(
-            @PathVariable("userSubmitQuizResultId") Long userSubmitQuizResultId) {
-        return ResponseEntity.ok(this.userSubmitQuizResultService.getSingleUserSubmitQuizById(userSubmitQuizResultId));
+            @PathVariable("userSubmitQuizResultId") Long userSubmitQuizResultId, Principal principal) {
+        return ResponseEntity.ok(this.userSubmitQuizResultService.getSingleUserSubmitQuizById(userSubmitQuizResultId, principal));
+    }
+
+    // get all user submit result by quiz id
+    @GetMapping(path = "/quiz/{quizId}")
+    public ResponseEntity<List<UserSubmitQuizResultDTO>> getUserSubmitQuizResultByQuizId(
+            @PathVariable("quizId") Long quizId) {
+        return ResponseEntity.ok(this.userSubmitQuizResultService.getAllUserSubmitQuizByQuiz(quizId));
     }
 
 }

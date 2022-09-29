@@ -48,6 +48,8 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {NgxUiLoaderHttpModule, NgxUiLoaderModule} from "ngx-ui-loader";
 import { UserSubmitQuizResultComponent } from './components/pages/common/user-submit-quiz-result/user-submit-quiz-result.component';
+import { QuizResultComponent } from './components/pages/admin/quiz-result/quiz-result.component';
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -76,6 +78,7 @@ import { UserSubmitQuizResultComponent } from './components/pages/common/user-su
     InstructionsComponent,
     StartQuizComponent,
     UserSubmitQuizResultComponent,
+    QuizResultComponent,
   ],
   imports: [
     BrowserModule,
@@ -103,7 +106,8 @@ import { UserSubmitQuizResultComponent } from './components/pages/common/user-su
     NgxUiLoaderModule,
     NgxUiLoaderHttpModule.forRoot({
       showForeground: true
-    })
+    }),
+    MatTableModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

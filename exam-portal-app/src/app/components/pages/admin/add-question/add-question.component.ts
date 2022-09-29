@@ -62,7 +62,7 @@ export class AddQuestionComponent implements OnInit {
     this.questionService.addQuestion(this.question).subscribe(
       data => {
         Swal.fire('Success!!', 'Question Submitted Successfully...', 'success');
-        this.router.navigateByUrl(`/admin/view-questions/${this.quizId}/${this.quizTitle}`);
+        this.router.navigate([`/admin/view-questions/${this.quizId}/${this.quizTitle}`]);
       }, error => {
         Swal.fire('Error!!', 'Error Adding Question...', 'error');
       }

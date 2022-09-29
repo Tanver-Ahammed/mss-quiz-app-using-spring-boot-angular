@@ -1,11 +1,14 @@
 package com.exam.portal.dto;
 
+import com.exam.portal.dto.quiz.UserSubmitQuizResultDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -33,5 +36,7 @@ public class UserDTO {
     private boolean isEnable;
 
     private Set<RoleDTO> roleDTOS = new HashSet<>();
+
+    private List<UserSubmitQuizResultDTO> userSubmitQuizResultDTOS = new ArrayList<>();
 
 }

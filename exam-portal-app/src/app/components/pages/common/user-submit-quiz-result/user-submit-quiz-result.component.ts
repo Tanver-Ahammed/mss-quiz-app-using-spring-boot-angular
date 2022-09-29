@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {UserSubmitQuizService} from "../../../../services/user-submit-quiz.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-user-submit-quiz-result',
@@ -11,6 +12,7 @@ export class UserSubmitQuizResultComponent implements OnInit {
 
   usqrId: any = 0;
   userSubmitQuizResult: any;
+  qColor: string = '';
 
   quizResult: any = {
     id: 0,
@@ -61,7 +63,8 @@ export class UserSubmitQuizResultComponent implements OnInit {
   ]
 
   constructor(private activatedRoute: ActivatedRoute,
-              private userSubmitQuizService: UserSubmitQuizService) {
+              private userSubmitQuizService: UserSubmitQuizService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -77,9 +80,17 @@ export class UserSubmitQuizResultComponent implements OnInit {
         this.userSubmitQuizResult = null;
       },
       error => {
-        alert(error);
+        Swal.fire("Error!!", 'You have not credential!!', 'error');
+        this.router.navigateByUrl('/user/profile');
       }
     )
+  }
+
+  questionColor(userAns: string, correctAns: string) {
+    if (userAns == correctAns)
+      this.qColor = 'green';
+    else
+      this.qColor = 'red';
   }
 
   printPage() {
