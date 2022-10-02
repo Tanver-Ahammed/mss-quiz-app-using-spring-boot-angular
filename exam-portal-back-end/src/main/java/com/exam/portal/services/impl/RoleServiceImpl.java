@@ -7,6 +7,8 @@ import com.exam.portal.services.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RoleServiceImpl implements RoleService {
 
@@ -18,4 +20,10 @@ public class RoleServiceImpl implements RoleService {
         return this.roleRepository.findById(roleId).orElseThrow(() ->
                 new ResourceNotFoundException("Role", "id", roleId));
     }
+
+    @Override
+    public List<Role> getAllRole() {
+        return this.roleRepository.findAll();
+    }
+
 }

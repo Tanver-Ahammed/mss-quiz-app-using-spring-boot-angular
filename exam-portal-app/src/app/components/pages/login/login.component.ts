@@ -55,7 +55,13 @@ export class LoginComponent implements OnInit {
             this.loginService.setUserDetails(user);
 
             // redirect ADMIN: admin dashboard
-            if (this.loginService.getUserRole() === "ADMIN") {
+            if (this.loginService.getUserRole() === "SUPER_ADMIN") {
+              window.location.href = '/super/admin';
+              // this.router.navigateByUrl('/super/admin');
+              this.loginService.loginStatusSubject.next(true);
+            }
+            // redirect ADMIN: admin dashboard
+            else if (this.loginService.getUserRole() === "ADMIN") {
               window.location.href = '/admin';
               // this.router.navigateByUrl('/admin');
               this.loginService.loginStatusSubject.next(true);

@@ -12,7 +12,22 @@ export class UserService {
 
   // add user
   public addUser(user: any) {
-    return this.http.post(`${baseUrl}/user/registration`, user)
+    return this.http.post(`${baseUrl}/user/registration`, user);
+  }
+
+  // get all roles
+  public fetchAllRoles() {
+    return this.http.get(`${baseUrl}/super/admin/roles/`);
+  }
+
+  // fetch all users
+  public fetchAllUsers() {
+    return this.http.get(`${baseUrl}/user/all`);
+  }
+
+  // update user
+  public updateUser(user: any) {
+    return this.http.put(`${baseUrl}/user/`, user);
   }
 
 }

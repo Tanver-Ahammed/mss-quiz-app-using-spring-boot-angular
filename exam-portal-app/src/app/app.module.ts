@@ -24,32 +24,40 @@ import {UserDashboardComponent} from './components/pages/user/user-dashboard/use
 import {AdminDashboardComponent} from './components/pages/admin/admin-dashboard/admin-dashboard.component';
 import {ProfileComponent} from './components/pages/profile/profile.component';
 import {MatListModule} from "@angular/material/list";
-import {SideBarComponent} from './components/pages/admin/side-bar/side-bar.component';
-import {WelcomeComponent} from './components/pages/admin/welcome/welcome.component';
+import {AdminSideBarComponent} from './components/pages/admin/admin-sidebar/admin-sidebar.component';
 import {ViewCategoriesComponent} from './components/pages/common/view-categories/view-categories.component';
 import {AddCategoryComponent} from './components/pages/admin/add-category/add-category.component';
 import {ViewQuizzesComponent} from './components/pages/common/view-quizzes/view-quizzes.component';
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatSelectModule} from "@angular/material/select";
 import {MatOptionModule} from "@angular/material/core";
-import { AddQuizComponent } from './components/pages/admin/add-quiz/add-quiz.component';
-import { UpdateQuizComponent } from './components/pages/admin/update-quiz/update-quiz.component';
-import { ViewQuizQuestionsComponent } from './components/pages/common/view-quiz-questions/view-quiz-questions.component';
-import { AddQuestionComponent } from './components/pages/admin/add-question/add-question.component';
-import { UpdateQuizQuestionComponent } from './components/pages/admin/update-quiz-question/update-quiz-question.component';
+import {AddQuizComponent} from './components/pages/admin/add-quiz/add-quiz.component';
+import {UpdateQuizComponent} from './components/pages/admin/update-quiz/update-quiz.component';
+import {ViewQuizQuestionsComponent} from './components/pages/common/view-quiz-questions/view-quiz-questions.component';
+import {AddQuestionComponent} from './components/pages/admin/add-question/add-question.component';
+import {
+  UpdateQuizQuestionComponent
+} from './components/pages/admin/update-quiz-question/update-quiz-question.component';
 import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
-import { UserSidebarComponent } from './components/pages/user/user-sidebar/user-sidebar.component';
-import { UserWelcomeComponent } from './components/pages/user/user-welcome/user-welcome.component';
-import { LoadQuizComponent } from './components/pages/user/load-quiz/load-quiz.component';
-import { InstructionsComponent } from './components/pages/user/instructions/instructions.component';
-import { StartQuizComponent } from './components/pages/user/start-quiz/start-quiz.component';
+import {UserSidebarComponent} from './components/pages/user/user-sidebar/user-sidebar.component';
+import {UserWelcomeComponent} from './components/pages/user/user-welcome/user-welcome.component';
+import {LoadQuizComponent} from './components/pages/user/load-quiz/load-quiz.component';
+import {InstructionsComponent} from './components/pages/user/instructions/instructions.component';
+import {StartQuizComponent} from './components/pages/user/start-quiz/start-quiz.component';
 import {MatRadioModule} from "@angular/material/radio";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {NgxUiLoaderHttpModule, NgxUiLoaderModule} from "ngx-ui-loader";
-import { UserSubmitQuizResultComponent } from './components/pages/common/user-submit-quiz-result/user-submit-quiz-result.component';
-import { QuizResultComponent } from './components/pages/admin/quiz-result/quiz-result.component';
+import {
+  UserSubmitQuizResultComponent
+} from './components/pages/common/user-submit-quiz-result/user-submit-quiz-result.component';
+import {QuizResultComponent} from './components/pages/admin/quiz-result/quiz-result.component';
 import {MatTableModule} from "@angular/material/table";
+import {AdminWelcomeComponent} from './components/pages/admin/admin-welcome/admin-welcome.component';
+import {WelcomeComponent} from './components/pages/super-admin/welcome/welcome.component';
+import {DashboardComponent} from './components/pages/super-admin/dashboard/dashboard.component';
+import { SidebarComponent } from './components/pages/super-admin/sidebar/sidebar.component';
+import { ViewAllUsersComponent } from './components/pages/common/view-all-users/view-all-users.component';
 
 @NgModule({
   declarations: [
@@ -62,8 +70,8 @@ import {MatTableModule} from "@angular/material/table";
     UserDashboardComponent,
     AdminDashboardComponent,
     ProfileComponent,
-    SideBarComponent,
-    WelcomeComponent,
+    AdminSideBarComponent,
+    AdminWelcomeComponent,
     ViewCategoriesComponent,
     AddCategoryComponent,
     ViewQuizzesComponent,
@@ -79,6 +87,10 @@ import {MatTableModule} from "@angular/material/table";
     StartQuizComponent,
     UserSubmitQuizResultComponent,
     QuizResultComponent,
+    WelcomeComponent,
+    DashboardComponent,
+    SidebarComponent,
+    ViewAllUsersComponent,
   ],
   imports: [
     BrowserModule,

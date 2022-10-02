@@ -8,7 +8,6 @@ import {UserDashboardComponent} from "./components/pages/user/user-dashboard/use
 import {AdminGuard} from "./services/admin.guard";
 import {NormalGuard} from "./services/normal.guard";
 import {ProfileComponent} from "./components/pages/profile/profile.component";
-import {WelcomeComponent} from "./components/pages/admin/welcome/welcome.component";
 import {ViewCategoriesComponent} from "./components/pages/common/view-categories/view-categories.component";
 import {AddCategoryComponent} from "./components/pages/admin/add-category/add-category.component";
 import {ViewQuizzesComponent} from "./components/pages/common/view-quizzes/view-quizzes.component";
@@ -27,6 +26,11 @@ import {
   UserSubmitQuizResultComponent
 } from "./components/pages/common/user-submit-quiz-result/user-submit-quiz-result.component";
 import {QuizResultComponent} from "./components/pages/admin/quiz-result/quiz-result.component";
+import {AdminWelcomeComponent} from "./components/pages/admin/admin-welcome/admin-welcome.component";
+import {WelcomeComponent} from "./components/pages/super-admin/welcome/welcome.component";
+import {DashboardComponent} from "./components/pages/super-admin/dashboard/dashboard.component";
+import {SuperAdminGuard} from "./services/super-admin.guard";
+import {ViewAllUsersComponent} from "./components/pages/common/view-all-users/view-all-users.component";
 
 const routes: Routes = [
   {
@@ -45,13 +49,31 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'super/admin',
+    component: DashboardComponent,
+    canActivate: [SuperAdminGuard],
+    children: [
+      {
+        path: '',
+        component: WelcomeComponent
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+      }, {
+        path: 'users',
+        component: ViewAllUsersComponent,
+      },
+    ]
+  },
+  {
     path: 'admin',
     component: AdminDashboardComponent,
     canActivate: [AdminGuard],
     children: [
       {
         path: '',
-        component: WelcomeComponent
+        component: AdminWelcomeComponent
       },
       {
         path: 'profile',
@@ -92,7 +114,8 @@ const routes: Routes = [
   },
   {
     path: 'submit/quiz/result/:usqrId',
-    component: UserSubmitQuizResultComponent
+    component: UserSubmitQuizResultComponent,
+    canActivate: [AdminGuard, NormalGuard]
   },
   {
     path: 'user',

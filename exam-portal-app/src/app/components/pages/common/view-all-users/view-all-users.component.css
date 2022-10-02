@@ -1,0 +1,27 @@
+.example-header-image {
+  background-image: url('../../../../../assets/quiz.png');
+  background-size: cover;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  /* row border */
+  border-bottom: 1px solid #ffa600;
+}
+
+td.mat-cell {
+  /* row padding */
+  padding: 10px 0;
+  border: none;
+}
+
+tr.mat-row {
+  /* row border */
+  border: 1px solid #cafff7;
+}
+
+
