@@ -30,8 +30,13 @@ public class UserController {
         return ResponseEntity.ok(userDTOS);
     }
 
+    @GetMapping("/id/{userId}")
+    public ResponseEntity<UserDTO> getSingleUserById(@PathVariable("userId") Long userId) {
+        return ResponseEntity.ok(this.userService.getSingleUserById(userId));
+    }
+
     @GetMapping("/{username}")
-    public ResponseEntity<UserDTO> deleteSingleUser(@PathVariable("username") String username) {
+    public ResponseEntity<UserDTO> getSingleUserByUsername(@PathVariable("username") String username) {
         return ResponseEntity.ok(this.userService.getUserByUsername(username));
     }
 

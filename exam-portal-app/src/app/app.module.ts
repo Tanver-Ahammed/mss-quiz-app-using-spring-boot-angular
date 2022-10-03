@@ -58,6 +58,7 @@ import {WelcomeComponent} from './components/pages/super-admin/welcome/welcome.c
 import {DashboardComponent} from './components/pages/super-admin/dashboard/dashboard.component';
 import { SidebarComponent } from './components/pages/super-admin/sidebar/sidebar.component';
 import { ViewAllUsersComponent } from './components/pages/common/view-all-users/view-all-users.component';
+import { UpdateRoleComponent } from './components/pages/super-admin/update-role/update-role.component';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import { ViewAllUsersComponent } from './components/pages/common/view-all-users/
     DashboardComponent,
     SidebarComponent,
     ViewAllUsersComponent,
+    UpdateRoleComponent,
   ],
   imports: [
     BrowserModule,

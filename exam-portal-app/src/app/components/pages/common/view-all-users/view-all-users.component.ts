@@ -10,6 +10,8 @@ import Swal from "sweetalert2";
 })
 export class ViewAllUsersComponent implements OnInit {
 
+  username: string = '';
+  allUsers: any = [];
   users: any = [
     {
       id: '',
@@ -26,6 +28,7 @@ export class ViewAllUsersComponent implements OnInit {
       }
     }
   ];
+  tempUsers: any = [];
 
   constructor(private userService: UserService,
               private router: Router) {
@@ -35,11 +38,24 @@ export class ViewAllUsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.fetchAllUsers().subscribe(
-      (data: any) => this.users = data,
+      (data: any) => {
+        this.users = data;
+        this.allUsers = data;
+      },
       (error) => {
         Swal.fire("Error!!", "Error in fetching user!!", 'error');
       }
     )
   }
 
+  filterUsers() {
+    for (let i = 0; i < this.allUsers.length; i++) {
+      if (this.allUsers[i].username.includes(this.username)) {
+        this.tempUsers = this.tempUsers.concat(this.allUsers[i]);
+      }
+    }
+    this.users = this.tempUsers;
+    this.tempUsers = [];
+    return this.users;
+  }
 }

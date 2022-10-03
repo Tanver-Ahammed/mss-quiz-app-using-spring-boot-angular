@@ -27,6 +27,9 @@ public class UserServiceImpl implements UserService {
     private RoleRepository roleRepository;
 
     @Autowired
+    private RoleServiceImpl roleService;
+
+    @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
@@ -60,6 +63,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserDTO getSingleUserById(Long userId) {
+        return this.userToUserDTO(this.getUserById(userId));
+    }
+
+    @Override
     public UserDTO getUserByUsername(String username) {
         User user = this.userRepository.findByUsername(username).orElseThrow(() ->
                 new ResourceNotFoundException("User", username, -1));
@@ -80,8 +88,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO updateUser(UserDTO userDTO, Long userId) {
-        User user = this.userRepository.findById(userId).orElseThrow(() ->
-                new ResourceNotFoundException("User", "Id", userId));
+        User user = this.getUserById(userId);
         user.setUsername(userDTO.getUsername());
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());
@@ -89,6 +96,16 @@ public class UserServiceImpl implements UserService {
         user.setPhone(userDTO.getPhone());
         user.setPassword(userDTO.getPassword());
         user.setAbout(userDTO.getAbout());
+        return this.userToUserDTO(this.userRepository.save(user));
+    }
+
+    public UserDTO updateUserRoleBySuperAdmin(UserDTO userDTO) {
+        User user = this.getUserById(userDTO.getId());
+        Long id = userDTO.getRoles().iterator().next().getId();
+        Role role = this.roleService.getRoleById(id);
+        Set<Role> roles = new HashSet<>();
+        roles.add(role);
+        user.setRoles(roles);
         return this.userToUserDTO(this.userRepository.save(user));
     }
 

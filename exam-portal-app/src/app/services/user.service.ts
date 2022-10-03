@@ -25,9 +25,20 @@ export class UserService {
     return this.http.get(`${baseUrl}/user/all`);
   }
 
+  // fetch user by id
+  public fetchUserById(userId: number) {
+    return this.http.get(`${baseUrl}/user/id/${userId}`);
+  }
+
   // update user
   public updateUser(user: any) {
     return this.http.put(`${baseUrl}/user/`, user);
   }
+
+  // update user role by super admin
+  public updateUserRole(user: any) {
+    return this.http.put(`${baseUrl}/super/admin/update/`, user);
+  }
+
 
 }

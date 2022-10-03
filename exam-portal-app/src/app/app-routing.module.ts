@@ -31,6 +31,7 @@ import {WelcomeComponent} from "./components/pages/super-admin/welcome/welcome.c
 import {DashboardComponent} from "./components/pages/super-admin/dashboard/dashboard.component";
 import {SuperAdminGuard} from "./services/super-admin.guard";
 import {ViewAllUsersComponent} from "./components/pages/common/view-all-users/view-all-users.component";
+import {UpdateRoleComponent} from "./components/pages/super-admin/update-role/update-role.component";
 
 const routes: Routes = [
   {
@@ -63,7 +64,10 @@ const routes: Routes = [
       }, {
         path: 'users',
         component: ViewAllUsersComponent,
-      },
+      },{
+        path: 'update/role/:userId',
+        component: UpdateRoleComponent,
+      }
     ]
   },
   {
