@@ -20,6 +20,7 @@ export class QuizResultComponent implements OnInit {
       quizDuration: '',
       userDTO: {
         id: '',
+        studentId: '',
         firstName: '',
         lastName: '',
         username: '',
@@ -54,6 +55,11 @@ export class QuizResultComponent implements OnInit {
       (data: any) => {
         this.userSubmitQuizResults = data;
         this.dataSource = data;
+        // @ts-ignore
+        this.dataSource.sort((a: any, b: any) => {
+          if (a.userDTO.studentId < b.userDTO.studentId)
+            return -1;
+        });
         console.log(data)
       }, (error) => {
         Swal.fire("Error!!", "Server Error in fetching data!!", 'error');
@@ -63,9 +69,9 @@ export class QuizResultComponent implements OnInit {
 
 
   /*****************************************/
-  displayedColumns: string[] = ['user-id', 'user-name', 'correct-answer', 'success-percentage', 'quiz-result'];
+  displayedColumns: string[] = ['student-id', 'user-name', 'correct-answer', 'success-percentage', 'quiz-result'];
 
-  printPage(divName:any) {
+  printPage(divName: any) {
     window.print();
   }
 }

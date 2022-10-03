@@ -25,6 +25,8 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String studentId;
+
     private String firstName;
 
     private String lastName;
@@ -32,6 +34,8 @@ public class User implements Serializable {
     private String username;
 
     private String email;
+
+    private String batch;
 
     private String phone;
 

@@ -18,10 +18,12 @@ export class SignupComponent implements OnInit {
 
   public user = {
     id: '',
+    studentId: '',
     firstName: '',
     lastName: '',
     username: '',
     email: '',
+    batch: '',
     phone: '',
     about: '',
     password: ''
@@ -40,6 +42,29 @@ export class SignupComponent implements OnInit {
       console.log(this.user);
       return;
     }
+
+    if (this.user.email == '' || this.user.email == null || !this.user.email.endsWith('@mbstu.ac.bd')) {
+      this.snack.open("email is required!!", 'ok', {
+        duration: 1000,
+        verticalPosition: 'top'
+      });
+      return;
+    }
+
+    // student id
+    let id_batch = this.user.email.substring(2, 7);
+    // @ts-ignore
+    if (isNaN(id_batch)) {
+      // for teacher
+      this.user.studentId = 'Teacher';
+      this.user.batch = 'Teacher';
+    } else {
+      // for student
+      this.user.studentId = 'IT'.concat(id_batch);
+      this.user.batch = (parseInt(id_batch.substring(0, 2)) - 3).toString();
+    }
+    console.log(this.user)
+
 
     // call addUser
     this.userService.addUser(this.user).subscribe(

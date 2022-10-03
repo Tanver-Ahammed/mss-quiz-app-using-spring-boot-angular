@@ -30,7 +30,6 @@ export class ForgetPasswordSetComponent implements OnInit {
 
   ngOnInit(): void {
     this.user.email = this.activatedRoute.snapshot.params['email'];
-    alert(this.user.email)
   }
 
   forgetPasswordSet() {

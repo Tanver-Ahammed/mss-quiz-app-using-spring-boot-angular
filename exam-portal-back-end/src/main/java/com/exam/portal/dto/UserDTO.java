@@ -20,6 +20,8 @@ public class UserDTO {
 
     private Long id;
 
+    private String studentId;
+
     private String firstName;
 
     private String lastName;
@@ -27,6 +29,8 @@ public class UserDTO {
     private String username;
 
     private String email;
+
+    private String batch;
 
     private String phone;
 

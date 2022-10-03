@@ -23,6 +23,14 @@
                 <td>User Id</td>
                 <td>USER-{{user.id}}</td>
               </tr>
+              <tr *ngIf="user.studentId">
+                <td>Student ID</td>
+                <td>{{user.studentId}}</td>
+              </tr>
+              <tr *ngIf="user.batch">
+                <td>Student Batch</td>
+                <td>{{user.batch}}</td>
+              </tr>
               <tr>
                 <td>Email</td>
                 <td>{{user.email}}</td>

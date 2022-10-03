@@ -10,10 +10,10 @@
     <mat-card-content>
 
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
-        <!-- user id -->
-        <ng-container matColumnDef="user-id">
-          <th mat-header-cell *matHeaderCellDef> ID</th>
-          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        <!-- student id -->
+        <ng-container matColumnDef="student-id">
+          <th mat-header-cell *matHeaderCellDef> Student ID</th>
+          <td mat-cell *matCellDef="let element"> {{element.userDTO.studentId}} </td>
         </ng-container>
 
         <!-- user name -->

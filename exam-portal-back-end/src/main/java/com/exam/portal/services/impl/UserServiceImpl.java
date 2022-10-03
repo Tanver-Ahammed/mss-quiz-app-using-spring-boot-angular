@@ -50,8 +50,8 @@ public class UserServiceImpl implements UserService {
             throw new Exception("Username Or Email Duplicate!!!");
 
         Set<Role> roles = new HashSet<>();
-        Role role = this.roleRepository.findById(2L).orElseThrow(() ->
-                new ResourceNotFoundException("Role", "id", 2L));
+        Role role = this.roleRepository.findById(3L).orElseThrow(() ->
+                new ResourceNotFoundException("Role", "id", 3L));
         roles.add(role);
         user.setRoles(roles);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
