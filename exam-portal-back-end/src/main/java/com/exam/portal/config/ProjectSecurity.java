@@ -42,7 +42,7 @@ public class ProjectSecurity extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .antMatchers("/generate-token", "/user/**").permitAll()
+                .antMatchers("/generate-token", "/user/**", "/forget/**").permitAll()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .anyRequest().authenticated()
                 .and()

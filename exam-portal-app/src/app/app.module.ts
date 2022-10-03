@@ -59,6 +59,8 @@ import {DashboardComponent} from './components/pages/super-admin/dashboard/dashb
 import { SidebarComponent } from './components/pages/super-admin/sidebar/sidebar.component';
 import { ViewAllUsersComponent } from './components/pages/common/view-all-users/view-all-users.component';
 import { UpdateRoleComponent } from './components/pages/super-admin/update-role/update-role.component';
+import { ForgetPasswordComponent } from './components/pages/forget-password/forget-password.component';
+import { ForgetPasswordSetComponent } from './components/pages/forget-password-set/forget-password-set.component';
 
 @NgModule({
   declarations: [
@@ -93,6 +95,8 @@ import { UpdateRoleComponent } from './components/pages/super-admin/update-role/
     SidebarComponent,
     ViewAllUsersComponent,
     UpdateRoleComponent,
+    ForgetPasswordComponent,
+    ForgetPasswordSetComponent,
   ],
   imports: [
     BrowserModule,

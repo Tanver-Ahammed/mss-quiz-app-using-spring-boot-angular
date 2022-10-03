@@ -7,6 +7,7 @@ import com.exam.portal.model.JwtResponse;
 import com.exam.portal.services.impl.UserDetailsServiceImpl;
 import com.exam.portal.services.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -69,6 +70,20 @@ public class AuthenticatedController {
     @GetMapping(path = "/current-user")
     public UserDTO getCurrentUser(Principal principal) {
         return this.userService.getUserByUsername(principal.getName());
+    }
+
+    // forget password
+    @PostMapping(path = "/forget/password")
+    public ResponseEntity<UserDTO> forgetPassword(@RequestBody UserDTO userDTO) throws Exception {
+        userDTO = this.userService.forgetPassword(userDTO);
+        return new ResponseEntity<>(userDTO, HttpStatus.OK);
+    }
+
+    // forget password set
+    @PostMapping(path = "/forget/password/set")
+    public ResponseEntity<UserDTO> forgetPasswordSet(@RequestBody UserDTO userDTO) throws Exception {
+        this.userService.forgetPasswordSet(userDTO);
+        return new ResponseEntity<>(userDTO, HttpStatus.OK);
     }
 
 }

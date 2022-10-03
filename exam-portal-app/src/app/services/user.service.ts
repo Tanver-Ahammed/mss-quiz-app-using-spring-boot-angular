@@ -40,5 +40,14 @@ export class UserService {
     return this.http.put(`${baseUrl}/super/admin/update/`, user);
   }
 
+  // forget password
+  public forgetPassword(user: any) {
+    return this.http.post(`${baseUrl}/forget/password/`, user);
+  }
+
+  // forget password set
+  public forgetPasswordSet(user: any) {
+    return this.http.post(`${baseUrl}/forget/password/set/`, user);
+  }
 
 }

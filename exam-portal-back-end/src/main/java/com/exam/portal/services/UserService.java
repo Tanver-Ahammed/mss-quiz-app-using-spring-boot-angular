@@ -19,4 +19,7 @@ public interface UserService {
 
     UserDTO updateUser(UserDTO userDTO, Long userId);
 
+    UserDTO forgetPassword(UserDTO userDTO);
+
+    void forgetPasswordSet(UserDTO userDTO);
 }

@@ -50,7 +50,8 @@ export class ViewAllUsersComponent implements OnInit {
 
   filterUsers() {
     for (let i = 0; i < this.allUsers.length; i++) {
-      if (this.allUsers[i].username.includes(this.username)) {
+      let fullName = this.allUsers[i].firstName.concat(' ').concat(this.allUsers[i].lastName);
+      if (fullName.includes(this.username)) {
         this.tempUsers = this.tempUsers.concat(this.allUsers[i]);
       }
     }

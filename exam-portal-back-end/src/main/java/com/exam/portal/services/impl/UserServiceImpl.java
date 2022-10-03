@@ -1,17 +1,21 @@
 package com.exam.portal.services.impl;
 
 import com.exam.portal.dto.UserDTO;
+import com.exam.portal.email.EmailSenderService;
 import com.exam.portal.entities.Role;
 import com.exam.portal.entities.User;
 import com.exam.portal.exception.ResourceNotFoundException;
 import com.exam.portal.repositories.RoleRepository;
 import com.exam.portal.repositories.UserRepository;
 import com.exam.portal.services.UserService;
+import net.bytebuddy.utility.RandomString;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.mail.MessagingException;
+import java.io.UnsupportedEncodingException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -30,6 +34,9 @@ public class UserServiceImpl implements UserService {
     private RoleServiceImpl roleService;
 
     @Autowired
+    private EmailSenderService emailSenderService;
+
+    @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
@@ -45,9 +52,11 @@ public class UserServiceImpl implements UserService {
         Set<Role> roles = new HashSet<>();
         Role role = this.roleRepository.findById(2L).orElseThrow(() ->
                 new ResourceNotFoundException("Role", "id", 2L));
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
         roles.add(role);
         user.setRoles(roles);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        String verificationCode = RandomString.make(6);
+        user.setVerificationCode(verificationCode);
         user.setEnable(true);
         user = this.userRepository.save(user);
         return this.userToUserDTO(user);
@@ -96,7 +105,32 @@ public class UserServiceImpl implements UserService {
         user.setPhone(userDTO.getPhone());
         user.setPassword(userDTO.getPassword());
         user.setAbout(userDTO.getAbout());
+        String verificationCode = RandomString.make(6);
+        user.setVerificationCode(verificationCode);
         return this.userToUserDTO(this.userRepository.save(user));
+    }
+
+    @Override
+    public UserDTO forgetPassword(UserDTO userDTO) {
+        User user = this.userRepository.findByEmail(userDTO.getEmail());
+        if (user == null)
+            throw new RuntimeException("This user not found");
+        this.sendOtpEmail(user);
+        return this.userToUserDTO(user);
+    }
+
+    @Override
+    public void forgetPasswordSet(UserDTO userDTO) {
+        User user = this.userRepository.findByEmail(userDTO.getEmail());
+        if (user == null)
+            throw new RuntimeException("This user not found");
+        if (user.getVerificationCode().equals(userDTO.getVerificationCode())) {
+            user.setPassword(this.passwordEncoder.encode(userDTO.getPassword()));
+            String verificationCode = RandomString.make(6);
+            user.setVerificationCode(verificationCode);
+            this.userRepository.save(user);
+        } else
+            throw new RuntimeException("OTP not matching...");
     }
 
     public UserDTO updateUserRoleBySuperAdmin(UserDTO userDTO) {
@@ -115,5 +149,19 @@ public class UserServiceImpl implements UserService {
         return userDTO;
     }
 
+    // send email for verification
+    private void sendOtpEmail(User user) {
+        String subject = "Please, Use This OTP for forget password";
+        String emailContent = "<p><b>Dear " + user.getUsername() + ",</b></p>"
+                + "Please put the opt in the app and Set Password:<br>"
+                + "<h1>OTP: <b>" + user.getVerificationCode() + "</b></h1>"
+                + "Thank you,<br>"
+                + "MSS - ICT Quiz App.";
+        try {
+            this.emailSenderService.sendEmailWithoutAttachment(user.getEmail(), subject, emailContent);
+        } catch (MessagingException | UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }

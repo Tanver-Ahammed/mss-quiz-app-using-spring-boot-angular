@@ -41,6 +41,8 @@ public class User implements Serializable {
 
     private boolean isEnable;
 
+    private String verificationCode;
+
     // private String role;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles",

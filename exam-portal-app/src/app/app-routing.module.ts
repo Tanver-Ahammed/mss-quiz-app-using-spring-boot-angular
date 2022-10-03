@@ -32,6 +32,8 @@ import {DashboardComponent} from "./components/pages/super-admin/dashboard/dashb
 import {SuperAdminGuard} from "./services/super-admin.guard";
 import {ViewAllUsersComponent} from "./components/pages/common/view-all-users/view-all-users.component";
 import {UpdateRoleComponent} from "./components/pages/super-admin/update-role/update-role.component";
+import {ForgetPasswordComponent} from "./components/pages/forget-password/forget-password.component";
+import {ForgetPasswordSetComponent} from "./components/pages/forget-password-set/forget-password-set.component";
 
 const routes: Routes = [
   {
@@ -50,6 +52,16 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'forget/password',
+    component: ForgetPasswordComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'forget/password/set/:email',
+    component: ForgetPasswordSetComponent,
+    pathMatch: 'full'
+  },
+  {
     path: 'super/admin',
     component: DashboardComponent,
     canActivate: [SuperAdminGuard],
@@ -64,7 +76,7 @@ const routes: Routes = [
       }, {
         path: 'users',
         component: ViewAllUsersComponent,
-      },{
+      }, {
         path: 'update/role/:userId',
         component: UpdateRoleComponent,
       }
@@ -119,7 +131,7 @@ const routes: Routes = [
   {
     path: 'submit/quiz/result/:usqrId',
     component: UserSubmitQuizResultComponent,
-    canActivate: [AdminGuard, NormalGuard]
+    pathMatch: 'full',
   },
   {
     path: 'user',
@@ -147,11 +159,7 @@ const routes: Routes = [
     path: 'start-quiz/:quizId/:quizTitle',
     component: StartQuizComponent,
     canActivate: [NormalGuard]
-  }, {
-    path: 'submit/quiz/result/:usqrId',
-    component: UserSubmitQuizResultComponent,
-    canActivate: [NormalGuard]
-  }
+  },
 ];
 
 @NgModule({

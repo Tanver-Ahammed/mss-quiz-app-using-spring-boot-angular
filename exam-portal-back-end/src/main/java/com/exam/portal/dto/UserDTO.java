@@ -36,6 +36,8 @@ public class UserDTO {
 
     private boolean isEnable;
 
+    private String verificationCode;
+
     private Set<Role> roles = new HashSet<>();
 
     private List<UserSubmitQuizResultDTO> userSubmitQuizResultDTOS = new ArrayList<>();
