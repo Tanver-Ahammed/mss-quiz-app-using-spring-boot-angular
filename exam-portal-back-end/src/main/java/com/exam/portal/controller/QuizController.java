@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -28,6 +29,12 @@ public class QuizController {
     @GetMapping(path = "/{quizId}")
     public ResponseEntity<QuizDTO> getQuizById(@PathVariable("quizId") Long quizId) {
         return ResponseEntity.ok(this.quizService.getSingleQuiz(quizId));
+    }
+
+    // get quiz
+    @GetMapping(path = "/start/{quizId}")
+    public ResponseEntity<QuizDTO> getSingleQuizForStartingQuiz(@PathVariable("quizId") Long quizId, Principal principal) {
+        return ResponseEntity.ok(this.quizService.getSingleQuizForStartingQuiz(quizId, principal));
     }
 
     // get all quiz

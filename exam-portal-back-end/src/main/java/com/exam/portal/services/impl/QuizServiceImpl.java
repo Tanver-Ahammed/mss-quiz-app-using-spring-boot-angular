@@ -3,16 +3,20 @@ package com.exam.portal.services.impl;
 import com.exam.portal.dto.quiz.CategoryDTO;
 import com.exam.portal.dto.quiz.QuestionDTO;
 import com.exam.portal.dto.quiz.QuizDTO;
+import com.exam.portal.entities.User;
 import com.exam.portal.entities.quiz.Category;
 import com.exam.portal.entities.quiz.Question;
 import com.exam.portal.entities.quiz.Quiz;
 import com.exam.portal.exception.ResourceNotFoundException;
 import com.exam.portal.repositories.QuizRepository;
+import com.exam.portal.repositories.UserRepository;
+import com.exam.portal.repositories.UserSubmitQuizResultRepository;
 import com.exam.portal.services.QuizService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,6 +25,12 @@ public class QuizServiceImpl implements QuizService {
 
     @Autowired
     private QuizRepository quizRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private UserSubmitQuizResultRepository userSubmitQuizResultRepository;
 
     @Autowired
     private CategoryServiceImpl categoryService;
@@ -56,6 +66,16 @@ public class QuizServiceImpl implements QuizService {
 
     @Override
     public QuizDTO getSingleQuiz(Long quizId) {
+        return this.quizToQuizDTO(this.getQuizById(quizId));
+    }
+
+    @Override
+    public QuizDTO getSingleQuizForStartingQuiz(Long quizId, Principal principal) {
+        User user = this.userRepository.findUserByUsername(principal.getName());
+        Quiz quiz = this.getQuizById(quizId);
+        Boolean isExistQuizThisUser = this.userSubmitQuizResultRepository.existsByUserAndQuiz(user, quiz);
+        if (isExistQuizThisUser)
+            throw new RuntimeException("this user already attend is quiz...");
         return this.quizToQuizDTO(this.getQuizById(quizId));
     }
 

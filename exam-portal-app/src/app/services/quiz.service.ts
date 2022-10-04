@@ -45,6 +45,11 @@ export class QuizService {
     return this.http.get(`${baseUrl}/quiz/${quizId}`);
   }
 
+  // fetch single quiz for starting quiz
+  public fetchSingleQuizForStartingQuiz(quizId: number) {
+    return this.http.get(`${baseUrl}/quiz/start/${quizId}`);
+  }
+
   // update quiz
   public updateQuiz(quiz: any) {
     return this.http.put(`${baseUrl}/quiz/`, quiz);

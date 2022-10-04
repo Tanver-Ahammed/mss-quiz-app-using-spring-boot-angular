@@ -68,14 +68,17 @@ export class StartQuizComponent implements OnInit {
   }
 
   loadQuestions() {
-    this.quizService.fetchSingleQuiz(this.quizId).subscribe(
+    this.quizService.fetchSingleQuizForStartingQuiz(this.quizId).subscribe(
       (data) => {
         this.quiz = data;
         this.timer = this.quiz.questionDTOS.length * 60;
         console.log(this.quiz)
         this.startTimer();
       },
-      (error) => Swal.fire('Error!!', 'Server Error!!', 'error')
+      (error) => {
+        Swal.fire('Show Result', 'You are already already attend this quiz.', 'info');
+        this.router.navigate([`/user/quizzes/0`]);
+      }
     )
   };
 

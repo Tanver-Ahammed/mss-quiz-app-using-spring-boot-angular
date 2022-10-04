@@ -13,4 +13,6 @@ public interface UserSubmitQuizResultRepository extends JpaRepository<UserSubmit
 
     List<UserSubmitQuizResult> findByQuiz(Quiz quiz);
 
+    Boolean existsByUserAndQuiz(User user, Quiz quiz);
+
 }
