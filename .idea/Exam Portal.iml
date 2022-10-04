@@ -6,6 +6,8 @@
       <sourceFolder url="file://$MODULE_DIR$/exam-portal-app/src/assets" type="java-test-resource" />
       <excludeFolder url="file://$MODULE_DIR$/exam-portal-app/dist" />
       <excludeFolder url="file://$MODULE_DIR$/exam-portal-app/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/dataSources" />
+      <excludeFolder url="file://$MODULE_DIR$/exam-portal-app/.angular/cache" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
