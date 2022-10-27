@@ -5,6 +5,11 @@ import com.exam.portal.entities.User;
 
 import java.util.List;
 
+/**
+ * @Author: Md. Tanver Ahammed,
+ * ICT, MBSTU
+ */
+
 public interface UserService {
 
     UserDTO registrationUser(UserDTO userDTO) throws Exception;

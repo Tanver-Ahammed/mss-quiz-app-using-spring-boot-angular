@@ -10,6 +10,11 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @Author: Md. Tanver Ahammed,
+ * ICT, MBSTU
+ */
+
 @Entity
 @Table(name = "categories")
 @Getter

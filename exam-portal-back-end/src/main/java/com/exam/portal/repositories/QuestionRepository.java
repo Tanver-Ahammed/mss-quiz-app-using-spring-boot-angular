@@ -6,6 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
+/**
+ * @Author: Md. Tanver Ahammed,
+ * ICT, MBSTU
+ */
+
 public interface QuestionRepository extends JpaRepository<Question, Long> {
 
     List<Question> findByQuiz(Quiz quiz);

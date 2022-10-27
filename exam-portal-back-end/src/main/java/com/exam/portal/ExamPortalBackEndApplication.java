@@ -1,17 +1,16 @@
 package com.exam.portal;
 
-import com.exam.portal.entities.Role;
-import com.exam.portal.entities.User;
 import com.exam.portal.repositories.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.util.HashSet;
-import java.util.Set;
+/**
+ * @Author: Md. Tanver Ahammed,
+ * ICT, MBSTU
+ */
 
 @SpringBootApplication
 public class ExamPortalBackEndApplication {

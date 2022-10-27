@@ -16,6 +16,11 @@ import java.io.UnsupportedEncodingException;
  * ICT, MBSTU
  * */
 
+/**
+ * @Author: Md. Tanver Ahammed,
+ * ICT, MBSTU
+ */
+
 @Service
 public class EmailSenderService {
 

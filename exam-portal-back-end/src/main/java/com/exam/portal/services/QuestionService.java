@@ -4,6 +4,11 @@ import com.exam.portal.dto.quiz.QuestionDTO;
 
 import java.util.List;
 
+/**
+ * @Author: Md. Tanver Ahammed,
+ * ICT, MBSTU
+ */
+
 public interface QuestionService {
 
     QuestionDTO addQuestion(QuestionDTO questionDTO);

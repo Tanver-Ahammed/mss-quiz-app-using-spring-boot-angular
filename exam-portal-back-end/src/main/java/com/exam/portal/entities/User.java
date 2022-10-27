@@ -13,8 +13,17 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * @Author: Md. Tanver Ahammed,
+ * ICT, MBSTU
+ */
+
 @Entity
-@Table(name = "users")
+@Table(name = "users",
+        indexes = {
+                @Index(columnList = "studentId", name = "student_id_index"),
+                @Index(columnList = "username", name = "username_index")
+        })
 @Getter
 @Setter
 @NoArgsConstructor

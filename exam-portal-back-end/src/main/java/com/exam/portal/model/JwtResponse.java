@@ -7,6 +7,11 @@ import lombok.Setter;
 
 import java.io.Serializable;
 
+/**
+ * @Author: Md. Tanver Ahammed,
+ * ICT, MBSTU
+ */
+
 @Getter
 @Setter
 @NoArgsConstructor

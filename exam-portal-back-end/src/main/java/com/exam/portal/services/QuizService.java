@@ -5,6 +5,11 @@ import com.exam.portal.dto.quiz.QuizDTO;
 import java.security.Principal;
 import java.util.List;
 
+/**
+ * @Author: Md. Tanver Ahammed,
+ * ICT, MBSTU
+ */
+
 public interface QuizService {
 
     QuizDTO addQuiz(QuizDTO quizDTO);

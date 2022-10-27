@@ -7,6 +7,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
+/**
+ * @Author: Md. Tanver Ahammed,
+ * ICT, MBSTU
+ */
+
 public interface UserSubmitQuizResultRepository extends JpaRepository<UserSubmitQuizResult, Long> {
 
     List<UserSubmitQuizResult> findByUser(User user);

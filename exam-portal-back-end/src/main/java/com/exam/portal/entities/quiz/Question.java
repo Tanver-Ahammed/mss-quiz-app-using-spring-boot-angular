@@ -7,6 +7,11 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+/**
+ * @Author: Md. Tanver Ahammed,
+ * ICT, MBSTU
+ */
+
 @Entity
 @Table(name = "questions")
 @Getter

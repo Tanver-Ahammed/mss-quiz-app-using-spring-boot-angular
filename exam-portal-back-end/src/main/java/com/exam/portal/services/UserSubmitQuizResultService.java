@@ -6,6 +6,11 @@ import com.exam.portal.dto.quiz.UserSubmitQuizResultDTO;
 import java.security.Principal;
 import java.util.List;
 
+/**
+ * @Author: Md. Tanver Ahammed,
+ * ICT, MBSTU
+ */
+
 public interface UserSubmitQuizResultService {
 
     // user submit quiz save

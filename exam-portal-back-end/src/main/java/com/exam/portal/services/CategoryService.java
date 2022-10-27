@@ -4,6 +4,11 @@ import com.exam.portal.dto.quiz.CategoryDTO;
 
 import java.util.List;
 
+/**
+ * @Author: Md. Tanver Ahammed,
+ * ICT, MBSTU
+ */
+
 public interface CategoryService {
 
     CategoryDTO addCategory(CategoryDTO categoryDTO);

@@ -24,6 +24,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+/**
+ * @Author: Md. Tanver Ahammed,
+ * ICT, MBSTU
+ */
+
 @Service
 public class UserSubmitQuizResultServiceImpl implements UserSubmitQuizResultService {
 

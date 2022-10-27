@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.List;
 
+/**
+ * @Author: Md. Tanver Ahammed,
+ * ICT, MBSTU
+ */
+
 @RestController
 @RequestMapping(path = "/user/submit/")
 @CrossOrigin("http://localhost:4200/")

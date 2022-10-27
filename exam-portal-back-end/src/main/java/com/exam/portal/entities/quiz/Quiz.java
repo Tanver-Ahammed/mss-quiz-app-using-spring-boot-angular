@@ -1,6 +1,5 @@
 package com.exam.portal.entities.quiz;
 
-import com.exam.portal.entities.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,6 +9,11 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * @Author: Md. Tanver Ahammed,
+ * ICT, MBSTU
+ */
 
 @Entity
 @Table(name = "quizzes")

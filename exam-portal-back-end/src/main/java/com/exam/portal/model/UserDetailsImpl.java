@@ -1,6 +1,5 @@
 package com.exam.portal.model;
 
-import com.exam.portal.entities.Role;
 import com.exam.portal.entities.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -9,6 +8,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+
+/**
+ * @Author: Md. Tanver Ahammed,
+ * ICT, MBSTU
+ */
 
 public class UserDetailsImpl implements UserDetails {
 
