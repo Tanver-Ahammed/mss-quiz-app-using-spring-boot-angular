@@ -91,4 +91,11 @@ public class AuthenticatedController {
         return new ResponseEntity<>(userDTO, HttpStatus.OK);
     }
 
+    // active account using opt
+    @PostMapping(path = "/active/account")
+    public ResponseEntity<UserDTO> activeAccountUsingOPT(@RequestBody UserDTO userDTO) throws Exception {
+        this.userService.activeAccountUsingOPT(userDTO);
+        return new ResponseEntity<>(userDTO, HttpStatus.OK);
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.exam.portal.services.impl;
 
+import com.exam.portal.config.AppConstants;
 import com.exam.portal.dto.UserDTO;
 import com.exam.portal.email.EmailSenderService;
 import com.exam.portal.entities.Role;
@@ -53,19 +54,37 @@ public class UserServiceImpl implements UserService {
         User localUser = this.userRepository.findUserByUsernameOrEmail(user.getUsername(), user.getEmail());
         if (localUser != null)
             throw new Exception("Username Or Email Duplicate!!!");
-
-        Set<Role> roles = new HashSet<>();
-        Role role = this.roleRepository.findById(3L).orElseThrow(() ->
-                new ResourceNotFoundException("Role", "id", 3L));
-        roles.add(role);
-        user.setRoles(roles);
+        user.setRoles(null);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        String verificationCode = RandomString.make(6);
+        String verificationCode = RandomString.make(64);
         user.setVerificationCode(verificationCode);
-        user.setEnable(true);
+        user.setEnable(false);
+        boolean isSendMail = this.sendOtpEmail(user, "Active Account");
+        if (!isSendMail)
+            throw new RuntimeException("This Mail is Not Valid!!!");
         user = this.userRepository.save(user);
         return this.userToUserDTO(user);
     }
+
+    @Override
+    public void activeAccountUsingOPT(UserDTO userDTO) {
+        User user = this.userRepository.findUserByUsername(userDTO.getUsername());
+        if (user == null)
+            throw new RuntimeException("This user not found");
+        if (user.getVerificationCode().equals(userDTO.getVerificationCode())) {
+            Set<Role> roles = new HashSet<>();
+            Role role = this.roleRepository.findById(3L).orElseThrow(() ->
+                    new ResourceNotFoundException("Role", "id", 3L));
+            roles.add(role);
+            user.setRoles(roles);
+            String verificationCode = RandomString.make(6);
+            user.setVerificationCode(verificationCode);
+            user.setEnable(true);
+            this.userRepository.save(user);
+        } else
+            throw new RuntimeException("OTP not matching...");
+    }
+
 
     @Override
     public List<UserDTO> findAllUsers() {
@@ -120,7 +139,7 @@ public class UserServiceImpl implements UserService {
         User user = this.userRepository.findByEmail(userDTO.getEmail());
         if (user == null)
             throw new RuntimeException("This user not found");
-        this.sendOtpEmail(user);
+        this.sendOtpEmail(user, "Set Password");
         return this.userToUserDTO(user);
     }
 
@@ -155,18 +174,25 @@ public class UserServiceImpl implements UserService {
     }
 
     // send email for verification
-    private void sendOtpEmail(User user) {
+    private boolean sendOtpEmail(User user, String status) {
         String subject = "Please, Use This OTP for forget password";
-        String emailContent = "<p><b>Dear " + user.getUsername() + ",</b></p>"
-                + "Please put the opt in the app and Set Password:<br>"
-                + "<h1>OTP: <b>" + user.getVerificationCode() + "</b></h1>"
-                + "Thank you,<br>"
+        String emailContent = "<p><b>Dear " + user.getUsername() + ",</b></p>";
+        if (status.equals("Set Password"))
+            emailContent += "Please put the opt in the app and " + status + ":<br>"
+                    + "<h1>OTP: <b>" + user.getVerificationCode() + "</b></h1>";
+        else if (status.equals("Active Account")) {
+            String siteURL = AppConstants.frontEndLink + "/active/account/" + user.getUsername() + "/" + user.getVerificationCode();
+            emailContent += "Please click the link below to verify your registration and Set Password:<br>"
+                    + "<h1><a href=\"" + siteURL + "\" target=\"_self\">VERIFY</a></h1>";
+        }
+        emailContent += "Thank you,<br>"
                 + "MSS - ICT Quiz App.";
         try {
             this.emailSenderService.sendEmailWithoutAttachment(user.getEmail(), subject, emailContent);
         } catch (MessagingException | UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }
+        return true;
     }
 
 }

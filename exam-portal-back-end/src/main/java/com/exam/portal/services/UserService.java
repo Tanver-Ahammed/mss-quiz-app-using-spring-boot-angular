@@ -14,6 +14,8 @@ public interface UserService {
 
     UserDTO registrationUser(UserDTO userDTO) throws Exception;
 
+    void activeAccountUsingOPT(UserDTO userDTO);
+
     List<UserDTO> findAllUsers();
 
     UserDTO getSingleUserById(Long userId);

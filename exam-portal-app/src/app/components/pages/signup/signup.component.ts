@@ -72,7 +72,7 @@ export class SignupComponent implements OnInit {
         // success
         console.log(data);
         // alert("Registration Success...");
-        Swal.fire('Success Done!!', 'User ID is: ' + data.id, 'success');
+        Swal.fire('Success Done!!', 'Please, Check Your Email and Active.', 'success');
         this.router.navigateByUrl('/login');
       }, (error) => {
         console.log(error);

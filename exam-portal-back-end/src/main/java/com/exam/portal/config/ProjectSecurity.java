@@ -47,7 +47,7 @@ public class ProjectSecurity extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .antMatchers("/generate-token", "/user/**", "/forget/**").permitAll()
+                .antMatchers("/generate-token", "/user/**", "/forget/**", "/active/**").permitAll()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -72,29 +72,11 @@ public class ProjectSecurity extends WebSecurityConfigurerAdapter {
 }
 
 
-//
-//    /**
-//     * From Spring Security 5.7, the WebSecurityConfigurerAdapter is deprecated to encourage users
-//     * to move towards a component-based security configuration. It is recommended to create a bean
-//     * of type SecurityFilterChain for security related configurations.
-//     *
-//     * @param http
-//     * @return SecurityFilterChain
-//     * @throws Exception
-//     */
-//
-//    @Bean
-//    protected SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-//        http
-//                .cors().disable()
-//                .csrf().disable()
-//                .authorizeHttpRequests((auth) -> auth
-//                        .antMatchers("/generate-token", "/user").permitAll()
-//                        .antMatchers(HttpMethod.OPTIONS).permitAll()
-//                        .anyRequest().authenticated()
-//                        .and()
-//                )
-//                .formLogin()
-//                .loginPage("/dealer/login");
-//        return http.build();
-//    }
+/**
+ * .authorizeHttpRequests()
+ * .antMatchers("/current-user", "/generate-token", "/forget/**", "/user/registration").permitAll()
+ * .antMatchers("/user/**").hasAnyRole("SUPER_ADMIN", "ADMIN", "NORMAL")
+ * .antMatchers("/question/**", "/quiz/**").hasAnyRole("ADMIN", "NORMAL")
+ * .antMatchers("/user/**", "/super/admin/**").hasAnyRole("SUPER_ADMIN")
+ * .antMatchers("/category/**").hasRole("ADMIN")
+ */

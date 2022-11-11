@@ -22,8 +22,10 @@ import java.util.Set;
 @Table(name = "users",
         indexes = {
                 @Index(columnList = "studentId", name = "student_id_index"),
-                @Index(columnList = "username", name = "username_index")
-        })
+                @Index(columnList = "username", name = "username_index"),
+                @Index(columnList = "email", name = "email_index")
+        }
+)
 @Getter
 @Setter
 @NoArgsConstructor

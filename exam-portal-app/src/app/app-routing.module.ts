@@ -34,6 +34,7 @@ import {ViewAllUsersComponent} from "./components/pages/common/view-all-users/vi
 import {UpdateRoleComponent} from "./components/pages/super-admin/update-role/update-role.component";
 import {ForgetPasswordComponent} from "./components/pages/forget-password/forget-password.component";
 import {ForgetPasswordSetComponent} from "./components/pages/forget-password-set/forget-password-set.component";
+import {ActiveAccountComponent} from "./components/pages/active-account/active-account.component";
 
 const routes: Routes = [
   {
@@ -44,6 +45,11 @@ const routes: Routes = [
   {
     path: 'signup',
     component: SignupComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'active/account/:username/:verificationCode',
+    component: ActiveAccountComponent,
     pathMatch: 'full'
   },
   {
