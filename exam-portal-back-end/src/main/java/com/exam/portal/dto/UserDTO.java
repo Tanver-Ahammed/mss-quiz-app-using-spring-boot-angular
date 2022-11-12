@@ -51,4 +51,13 @@ public class UserDTO {
 
     private List<UserSubmitQuizResultDTO> userSubmitQuizResultDTOS = new ArrayList<>();
 
+//    public Set<Role> getRoles() {
+//        Set<Role> roleSet = new HashSet<>();
+//        for (Role role : roles) {
+//            role.setRoleName(role.getRoleName().substring(5));
+//            roleSet.add(role);
+//        }
+//        return roleSet;
+//    }
+
 }

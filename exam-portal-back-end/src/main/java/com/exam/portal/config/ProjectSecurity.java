@@ -47,7 +47,7 @@ public class ProjectSecurity extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .antMatchers("/generate-token", "/user/**", "/forget/**", "/active/**").permitAll()
+                .antMatchers("/current-user", "/generate-token", "/forget/**", "/user/registration/").permitAll()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -74,9 +74,9 @@ public class ProjectSecurity extends WebSecurityConfigurerAdapter {
 
 /**
  * .authorizeHttpRequests()
- * .antMatchers("/current-user", "/generate-token", "/forget/**", "/user/registration").permitAll()
- * .antMatchers("/user/**").hasAnyRole("SUPER_ADMIN", "ADMIN", "NORMAL")
- * .antMatchers("/question/**", "/quiz/**").hasAnyRole("ADMIN", "NORMAL")
- * .antMatchers("/user/**", "/super/admin/**").hasAnyRole("SUPER_ADMIN")
- * .antMatchers("/category/**").hasRole("ADMIN")
+ * * .antMatchers("/current-user", "/generate-token", "/forget/**", "/user/registration").permitAll()
+ * * .antMatchers("/user/**").hasAnyRole("SUPER_ADMIN", "ADMIN", "NORMAL")
+ * * .antMatchers("/question/**", "/quiz/**").hasAnyRole("ADMIN", "NORMAL")
+ * * .antMatchers("/user/**", "/super/admin/**").hasAnyRole("SUPER_ADMIN")
+ * * .antMatchers("/category/**").hasRole("ADMIN")
  */
