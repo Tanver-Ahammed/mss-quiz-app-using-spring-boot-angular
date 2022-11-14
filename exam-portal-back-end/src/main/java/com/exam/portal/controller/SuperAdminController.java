@@ -2,12 +2,14 @@ package com.exam.portal.controller;
 
 import com.exam.portal.dto.UserDTO;
 import com.exam.portal.entities.Role;
+import com.exam.portal.entities.User;
 import com.exam.portal.services.impl.RoleServiceImpl;
 import com.exam.portal.services.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 /**
@@ -32,8 +34,8 @@ public class SuperAdminController {
     }
 
     @PutMapping(path = "update")
-    public ResponseEntity<UserDTO> updateUserRoleBySuperAdmin(@RequestBody UserDTO userDTO) {
-        return ResponseEntity.ok(this.userService.updateUserRoleBySuperAdmin(userDTO));
+    public ResponseEntity<UserDTO> updateUserRoleBySuperAdmin(@RequestBody UserDTO userDTO, Principal principal) {
+        return ResponseEntity.ok(this.userService.updateUserRoleBySuperAdmin(userDTO, principal));
     }
 
 }

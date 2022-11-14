@@ -17,6 +17,8 @@ import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import java.io.UnsupportedEncodingException;
+import java.security.Principal;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -157,7 +159,13 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("OTP not matching...");
     }
 
-    public UserDTO updateUserRoleBySuperAdmin(UserDTO userDTO) {
+    @Override
+    public UserDTO updateUserRoleBySuperAdmin(UserDTO userDTO, Principal principal) {
+        List<Role> superAdminRoles = new ArrayList<>(this.userRepository
+                .findUserByUsername(principal.getName()).getRoles());
+        if (!superAdminRoles.get(0).getRoleName().equals("SUPER_ADMIN"))
+            throw new RuntimeException("Role Changer not SUPER_ADMIN");
+
         User user = this.getUserById(userDTO.getId());
         Long id = userDTO.getRoles().iterator().next().getId();
         Role role = this.roleService.getRoleById(id);

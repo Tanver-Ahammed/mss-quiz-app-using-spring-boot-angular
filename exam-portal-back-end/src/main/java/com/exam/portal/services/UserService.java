@@ -3,6 +3,7 @@ package com.exam.portal.services;
 import com.exam.portal.dto.UserDTO;
 import com.exam.portal.entities.User;
 
+import java.security.Principal;
 import java.util.List;
 
 /**
@@ -29,4 +30,7 @@ public interface UserService {
     UserDTO forgetPassword(UserDTO userDTO);
 
     void forgetPasswordSet(UserDTO userDTO);
+
+    UserDTO updateUserRoleBySuperAdmin(UserDTO userDTO, Principal principal);
+
 }
