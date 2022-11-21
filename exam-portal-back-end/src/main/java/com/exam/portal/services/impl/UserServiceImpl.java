@@ -132,7 +132,6 @@ public class UserServiceImpl implements UserService {
         user.setLastName(userDTO.getLastName());
         user.setEmail(userDTO.getEmail());
         user.setPhone(userDTO.getPhone());
-        user.setPassword(userDTO.getPassword());
         user.setAbout(userDTO.getAbout());
         String verificationCode = RandomString.make(6);
         user.setVerificationCode(verificationCode);
