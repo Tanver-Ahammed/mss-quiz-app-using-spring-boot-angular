@@ -1,0 +1,34 @@
+@media (max-width: 1080px) {
+  img {
+    height: 500px;
+    width: 1080px;
+  }
+}
+
+@media (max-width: 890px) {
+  img {
+    height: 500px;
+    width: 890px;
+  }
+}
+
+@media (max-width: 700px) {
+  img {
+    height: 500px;
+    width: 700px;
+  }
+}
+
+@media (max-width: 510px) {
+  img {
+    height: 500px;
+    width: 510px;
+  }
+}
+
+@media (max-width: 320px) {
+  img {
+    height: 500px;
+    width: 320px;
+  }
+}
