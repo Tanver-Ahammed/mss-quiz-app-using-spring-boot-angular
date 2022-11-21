@@ -37,7 +37,8 @@ export class UserService {
 
   // update user
   public updateUser(user: any) {
-    return this.http.put(`${baseUrl}/user/`, user);
+    console.log("Tanver")
+    return this.http.put(`${baseUrl}/user/${user.id}`, user);
   }
 
   // update user role by super admin

@@ -56,7 +56,10 @@ public class UserServiceImpl implements UserService {
         User localUser = this.userRepository.findUserByUsernameOrEmail(user.getUsername(), user.getEmail());
         if (localUser != null)
             throw new Exception("Username Or Email Duplicate!!!");
-        user.setRoles(null);
+        Set<Role> roles = new HashSet<>();
+        Role role = this.roleService.getRoleById(3L);
+        roles.add(role);
+        user.setRoles(roles);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         String verificationCode = RandomString.make(64);
         user.setVerificationCode(verificationCode);

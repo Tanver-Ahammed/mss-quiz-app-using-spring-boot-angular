@@ -35,6 +35,8 @@ import {UpdateRoleComponent} from "./components/pages/super-admin/update-role/up
 import {ForgetPasswordComponent} from "./components/pages/forget-password/forget-password.component";
 import {ForgetPasswordSetComponent} from "./components/pages/forget-password-set/forget-password-set.component";
 import {ActiveAccountComponent} from "./components/pages/active-account/active-account.component";
+import {UpdateUserComponent} from "./components/pages/common/update-user/update-user.component";
+import {DeveloperComponent} from "./components/component/developer/developer.component";
 
 const routes: Routes = [
   {
@@ -65,6 +67,16 @@ const routes: Routes = [
   {
     path: 'forget/password/set/:email',
     component: ForgetPasswordSetComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'update/my/profile',
+    component: UpdateUserComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'developer',
+    component: DeveloperComponent,
     pathMatch: 'full'
   },
   {

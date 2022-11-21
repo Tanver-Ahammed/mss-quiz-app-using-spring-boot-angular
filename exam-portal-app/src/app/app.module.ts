@@ -62,6 +62,8 @@ import { UpdateRoleComponent } from './components/pages/super-admin/update-role/
 import { ForgetPasswordComponent } from './components/pages/forget-password/forget-password.component';
 import { ForgetPasswordSetComponent } from './components/pages/forget-password-set/forget-password-set.component';
 import { ActiveAccountComponent } from './components/pages/active-account/active-account.component';
+import { UpdateUserComponent } from './components/pages/common/update-user/update-user.component';
+import { DeveloperComponent } from './components/component/developer/developer.component';
 
 @NgModule({
   declarations: [
@@ -99,6 +101,8 @@ import { ActiveAccountComponent } from './components/pages/active-account/active
     ForgetPasswordComponent,
     ForgetPasswordSetComponent,
     ActiveAccountComponent,
+    UpdateUserComponent,
+    DeveloperComponent,
   ],
   imports: [
     BrowserModule,

@@ -25,6 +25,7 @@ export class QuizResultComponent implements OnInit {
         lastName: '',
         username: '',
         email: '',
+        batch: '',
         phone: '',
         about: ''
       },
