@@ -1,3 +1,7 @@
+img {
+  border-radius: 30px;
+}
+
 @media (max-width: 1080px) {
   img {
     height: 500px;
