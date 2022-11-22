@@ -64,9 +64,9 @@ public class UserServiceImpl implements UserService {
         String verificationCode = RandomString.make(64);
         user.setVerificationCode(verificationCode);
         user.setEnable(false);
-        boolean isSendMail = this.sendOtpEmail(user, "Active Account");
-        if (!isSendMail)
-            throw new RuntimeException("This Mail is Not Valid!!!");
+//        boolean isSendMail = this.sendOtpEmail(user, "Active Account");
+//        if (!isSendMail)
+//            throw new RuntimeException("This Mail is Not Valid!!!");
         user = this.userRepository.save(user);
         return this.userToUserDTO(user);
     }
@@ -191,6 +191,7 @@ public class UserServiceImpl implements UserService {
             emailContent += "Please put the opt in the app and " + status + ":<br>"
                     + "<h1>OTP: <b>" + user.getVerificationCode() + "</b></h1>";
         else if (status.equals("Active Account")) {
+            subject = "Sending Email for account validation.";
             String siteURL = AppConstants.frontEndLink + "/active/account/" + user.getUsername() + "/" + user.getVerificationCode();
             emailContent += "Please click the link below to verify your registration and Set Password:<br>"
                     + "<h1><a href=\"" + siteURL + "\" target=\"_self\">VERIFY</a></h1>";

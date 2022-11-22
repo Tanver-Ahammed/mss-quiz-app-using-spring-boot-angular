@@ -17,6 +17,7 @@ export class UserService {
 
   // active account
   public activeAccount(user: any) {
+    console.log(user)
     return this.http.post(`${baseUrl}/active/account/`, user);
   }
 
