@@ -2,37 +2,65 @@ img {
   border-radius: 30px;
 }
 
+@media (max-width: 1115px) {
+  img {
+    height: 500px;
+    width: 900px;
+  }
+}
+
 @media (max-width: 1080px) {
   img {
     height: 500px;
-    width: 1080px;
+    width: 850px;
+  }
+}
+
+@media (max-width: 950px) {
+  img {
+    height: 500px;
+    width: 690px;
   }
 }
 
 @media (max-width: 890px) {
   img {
-    height: 500px;
-    width: 890px;
+    height: 450px;
+    width: 600px;
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 750px) {
   img {
-    height: 500px;
-    width: 700px;
+    height: 380px;
+    width: 500px;
   }
 }
 
 @media (max-width: 510px) {
   img {
-    height: 500px;
-    width: 510px;
+    height: 320px;
+    width: 460px;
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 400px) {
   img {
-    height: 500px;
-    width: 320px;
+    height: 300px;
+    width: 350px;
+  }
+}
+
+@media (max-width: 300px) {
+  img {
+    height: 250px;
+    width: 250px;
+  }
+}
+
+@media (max-width: 250px) {
+  img {
+    height: 210px;
+    width: 200px;
   }
 }

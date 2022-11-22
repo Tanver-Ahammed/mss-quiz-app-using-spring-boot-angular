@@ -55,7 +55,7 @@
             <h1 class="text-center">{{ getFormatTimer() }}</h1>
             <mat-spinner
               mode="determinate"
-              color="accent"
+              color="primary"
               style="margin: auto"
               [value]="timer / (this.quiz.questionDTOS.length * 60) * 100"
             >
@@ -67,9 +67,9 @@
   </div>
 </div>
 
-{{timer   | json}}
-{{quiz   | json}}
+<!--{{timer   | json}}-->
+<!--{{quiz   | json}}-->
 
 <div>
-  {{userSubmitQuizResult | json}}
+<!--  {{userSubmitQuizResult | json}}-->
 </div>
