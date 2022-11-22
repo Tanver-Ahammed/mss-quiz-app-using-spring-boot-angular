@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="exam_portal@localhost" uuid="133c6b8d-ea96-4fd9-93e4-4412c465de01">
+    <data-source source="LOCAL" name="mss_quiz_app@localhost" uuid="133c6b8d-ea96-4fd9-93e4-4412c465de01">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
