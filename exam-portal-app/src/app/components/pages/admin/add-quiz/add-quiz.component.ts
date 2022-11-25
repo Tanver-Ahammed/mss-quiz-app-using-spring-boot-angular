@@ -25,6 +25,7 @@ export class AddQuizComponent implements OnInit {
     description: '',
     maxMarks: '',
     numberOfQuestions: '',
+    pin: '',
     active: true,
     author: '',
     categoryDTO: {

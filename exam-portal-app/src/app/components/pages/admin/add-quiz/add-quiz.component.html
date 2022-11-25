@@ -60,6 +60,19 @@
             </div>
           </div>
 
+          <!--title field-->
+          <mat-form-field class="w-100" appearance="fill">
+            <mat-label>Enter Pin</mat-label>
+            <input
+              [(ngModel)]="quizData.pin"
+              type="text"
+              name="pin"
+              placeholder="Enter Quiz Title"
+              matInput
+              required
+            />
+          </mat-form-field>
+
           <!--active field-->
           <mat-slide-toggle
             name="active"

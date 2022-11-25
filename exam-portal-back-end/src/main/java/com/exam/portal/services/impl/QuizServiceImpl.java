@@ -55,6 +55,7 @@ public class QuizServiceImpl implements QuizService {
         quiz.setDescription(quizDTO.getDescription());
         quiz.setMaxMarks(quizDTO.getMaxMarks());
         quiz.setNumberOfQuestions(quizDTO.getNumberOfQuestions());
+        quiz.setPin(quizDTO.getPin());
         quiz.setActive(quiz.isActive());
         quiz.setCategory(this.categoryService.categoryDTOToCategory(quizDTO.getCategoryDTO()));
         return this.quizToQuizDTO(this.quizRepository.save(quiz));

@@ -29,6 +29,8 @@ public class QuizDTO {
 
     private int numberOfQuestions;
 
+    private String pin;
+
     private boolean isActive = false;
 
     private String author;

@@ -53,12 +53,25 @@
                   min="0"
                   max="1000"
                   name="numberOfQuestions"
-                  placeholder="Enter Quiz Title"
+                  placeholder="Enter Number of Questions"
                   matInput
                 />
               </mat-form-field>
             </div>
           </div>
+
+          <!--pin field-->
+          <mat-form-field class="w-100" appearance="fill">
+            <mat-label>Enter Pin</mat-label>
+            <input
+              [(ngModel)]="quiz.pin"
+              type="text"
+              name="pin"
+              placeholder="Enter Quiz Pin"
+              matInput
+              required
+            />
+          </mat-form-field>
 
           <!--active field-->
           <mat-slide-toggle

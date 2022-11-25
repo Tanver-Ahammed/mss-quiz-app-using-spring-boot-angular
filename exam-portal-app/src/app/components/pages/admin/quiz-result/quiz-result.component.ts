@@ -35,6 +35,7 @@ export class QuizResultComponent implements OnInit {
         description: '',
         maxMarks: '',
         numberOfQuestions: '',
+        pin: '',
         active: true,
         author: '',
         categoryDTO: {

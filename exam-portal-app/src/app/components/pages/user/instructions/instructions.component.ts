@@ -43,6 +43,11 @@ export class InstructionsComponent implements OnInit {
   }
 
   startQuiz() {
+    let quizPin = prompt("Enter Your Quiz Pin");
+    if (this.quiz.pin != quizPin) {
+      Swal.fire('Please, Enter Right Pin!!!', 'Try! Again', 'error');
+      return;
+    }
     Swal.fire({
       title: 'Do you want to start the quiz?',
       showCancelButton: true,
