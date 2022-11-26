@@ -4,10 +4,22 @@
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>{{quizTitle}}</mat-card-title>
       <mat-card-subtitle *ngIf="userSubmitQuizResults">
-        {{userSubmitQuizResults[0].quizDTO.categoryDTO.title}}
+        {{categoryTitle}}
       </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
+
+      <div class="col-md-6">
+        <mat-form-field class="full-width" appearance="outline">
+          <input
+            type="text"
+            [(ngModel)]="batchNumber"
+            matInput
+            (keyup)="filterUsersByBatch()"
+            placeholder="Enter batch number"
+          >
+        </mat-form-field>
+      </div>
 
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
         <!-- student id -->
@@ -62,4 +74,4 @@
 </mat-card>
 
 
-{{dataSource | json}}
+<!--{{dataSource | json}}-->

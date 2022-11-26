@@ -12,6 +12,7 @@ export class QuizResultComponent implements OnInit {
 
   quizId: number = 0;
   quizTitle: string = '';
+  categoryTitle: string = '';
   dataSource: any;
   userSubmitQuizResults: any = [
     {
@@ -57,6 +58,7 @@ export class QuizResultComponent implements OnInit {
       (data: any) => {
         this.userSubmitQuizResults = data;
         this.dataSource = data;
+        this.categoryTitle = this.userSubmitQuizResults[0].quizDTO.categoryDTO.title;
         // @ts-ignore
         this.dataSource.sort((a: any, b: any) => {
           if (a.userDTO.studentId < b.userDTO.studentId)
@@ -75,5 +77,20 @@ export class QuizResultComponent implements OnInit {
 
   printPage(divName: any) {
     window.print();
+  }
+
+  batchNumber: any;
+  tempUsersSubmitQuizResult: any = [];
+
+  filterUsersByBatch() {
+    for (let i = 0; i < this.userSubmitQuizResults.length; i++) {
+      let batchNum = this.userSubmitQuizResults[i].userDTO.batch;
+      if (batchNum.includes(this.batchNumber)) {
+        this.tempUsersSubmitQuizResult = this.tempUsersSubmitQuizResult.concat(this.userSubmitQuizResults[i]);
+      }
+    }
+    this.dataSource = this.tempUsersSubmitQuizResult;
+    this.tempUsersSubmitQuizResult = [];
+    return this.dataSource;
   }
 }
