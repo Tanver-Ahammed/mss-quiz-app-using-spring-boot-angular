@@ -14,9 +14,9 @@ public interface QuizService {
 
     QuizDTO addQuiz(QuizDTO quizDTO);
 
-    QuizDTO updateQuiz(QuizDTO quizDTO);
+    QuizDTO updateQuiz(QuizDTO quizDTO, Principal principal);
 
-    List<QuizDTO> getAllCategories();
+    List<QuizDTO> getAllQuizzes();
 
     QuizDTO getSingleQuiz(Long quizId);
 
@@ -24,12 +24,12 @@ public interface QuizService {
 
     List<QuizDTO> getAllQuizzesByCategoryId(Long categoryId);
 
-    List<QuizDTO> getAllQuizzesByUserId(String username);
+    List<QuizDTO> getAllQuizzesByUsername(String username);
 
     List<QuizDTO> getAllActiveQuizzes();
 
     List<QuizDTO> getAllActiveQuizzesByCategory(Long categoryId);
 
-    void deleteQuiz(Long quizId);
+    void deleteQuiz(Long quizId, Principal principal);
 
 }

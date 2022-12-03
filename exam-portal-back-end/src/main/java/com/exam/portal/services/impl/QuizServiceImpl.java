@@ -49,8 +49,10 @@ public class QuizServiceImpl implements QuizService {
     }
 
     @Override
-    public QuizDTO updateQuiz(QuizDTO quizDTO) {
+    public QuizDTO updateQuiz(QuizDTO quizDTO, Principal principal) {
         Quiz quiz = this.getQuizById(quizDTO.getId());
+        if (!quiz.getAuthor().equals(principal.getName()))
+            throw new RuntimeException("Not Valid Author!!!");
         quiz.setTitle(quizDTO.getTitle());
         quiz.setDescription(quizDTO.getDescription());
         quiz.setMaxMarks(quizDTO.getMaxMarks());
@@ -62,7 +64,7 @@ public class QuizServiceImpl implements QuizService {
     }
 
     @Override
-    public List<QuizDTO> getAllCategories() {
+    public List<QuizDTO> getAllQuizzes() {
         return this.quizRepository
                 .findAll()
                 .stream()
@@ -96,7 +98,7 @@ public class QuizServiceImpl implements QuizService {
     }
 
     @Override
-    public List<QuizDTO> getAllQuizzesByUserId(String username) {
+    public List<QuizDTO> getAllQuizzesByUsername(String username) {
         return this.quizRepository
                 .findByAuthor(username)
                 .stream()
@@ -126,8 +128,11 @@ public class QuizServiceImpl implements QuizService {
     }
 
     @Override
-    public void deleteQuiz(Long quizId) {
-        this.quizRepository.delete(this.getQuizById(quizId));
+    public void deleteQuiz(Long quizId, Principal principal) {
+        Quiz quiz = this.getQuizById(quizId);
+        if (!quiz.getAuthor().equals(principal.getName()))
+            throw new RuntimeException("Not Valid Author!!!");
+        this.quizRepository.delete(quiz);
     }
 
     // get quiz by id

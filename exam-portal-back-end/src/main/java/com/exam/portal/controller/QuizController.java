@@ -36,16 +36,16 @@ public class QuizController {
         return ResponseEntity.ok(this.quizService.getSingleQuiz(quizId));
     }
 
-    // get quiz
+    // get quiz for normal user
     @GetMapping(path = "/start/{quizId}")
     public ResponseEntity<QuizDTO> getSingleQuizForStartingQuiz(@PathVariable("quizId") Long quizId, Principal principal) {
         return ResponseEntity.ok(this.quizService.getSingleQuizForStartingQuiz(quizId, principal));
     }
 
-    // get all quiz
+    // get all quiz for admin
     @GetMapping(path = "/")
-    public ResponseEntity<List<QuizDTO>> getAllCategories() {
-        return ResponseEntity.ok(this.quizService.getAllCategories());
+    public ResponseEntity<List<QuizDTO>> getAllQuizzes(Principal principal) {
+        return ResponseEntity.ok(this.quizService.getAllQuizzesByUsername(principal.getName()));
     }
 
     // get all quizzes by category
@@ -57,7 +57,7 @@ public class QuizController {
     // get all quizzes by user
     @GetMapping(path = "/user/{username}")
     public ResponseEntity<List<QuizDTO>> getAllQuizzesByUser(@PathVariable("username") String username) {
-        return ResponseEntity.ok(this.quizService.getAllQuizzesByUserId(username));
+        return ResponseEntity.ok(this.quizService.getAllQuizzesByUsername(username));
     }
 
     // get all active quizzes for user
@@ -72,16 +72,16 @@ public class QuizController {
         return ResponseEntity.ok(this.quizService.getAllActiveQuizzesByCategory(categoryId));
     }
 
-    // update quiz
+    // update quiz for admin
     @PutMapping(path = "/")
-    public ResponseEntity<QuizDTO> updateQuiz(@RequestBody QuizDTO quizDTO) {
-        return ResponseEntity.ok(this.quizService.updateQuiz(quizDTO));
+    public ResponseEntity<QuizDTO> updateQuiz(@RequestBody QuizDTO quizDTO, Principal principal) {
+        return ResponseEntity.ok(this.quizService.updateQuiz(quizDTO, principal));
     }
 
-    // delete quiz
+    // delete quiz for admin
     @DeleteMapping(path = "/{quizId}")
-    public ResponseEntity<ApiResponse> deleteQuiz(@PathVariable("quizId") Long quizId) {
-        this.quizService.deleteQuiz(quizId);
+    public ResponseEntity<ApiResponse> deleteQuiz(@PathVariable("quizId") Long quizId, Principal principal) {
+        this.quizService.deleteQuiz(quizId, principal);
         return new ResponseEntity<>(new ApiResponse("Quiz deleted successfully.", true),
                 HttpStatus.OK);
     }
