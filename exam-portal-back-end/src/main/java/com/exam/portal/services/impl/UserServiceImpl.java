@@ -64,9 +64,9 @@ public class UserServiceImpl implements UserService {
         String verificationCode = RandomString.make(64);
         user.setVerificationCode(verificationCode);
         user.setEnable(false);
-        boolean isSendMail = this.sendOtpEmail(user, "Active Account");
-        if (!isSendMail)
-            throw new RuntimeException("This Mail is Not Valid!!!");
+//        boolean isSendMail = this.sendOtpEmail(user, "Active Account");
+//        if (!isSendMail)
+//            throw new RuntimeException("This Mail is Not Valid!!!");
         user = this.userRepository.save(user);
         return this.userToUserDTO(user);
     }

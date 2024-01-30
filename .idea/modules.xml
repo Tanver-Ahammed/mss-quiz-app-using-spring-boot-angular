@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Exam Portal.iml" filepath="$PROJECT_DIR$/.idea/Exam Portal.iml" />
-      <module fileurl="file://$PROJECT_DIR$/exam-portal-back-end/exam-portal-back-end.iml" filepath="$PROJECT_DIR$/exam-portal-back-end/exam-portal-back-end.iml" />
       <module fileurl="file://$PROJECT_DIR$/mss-exam-portal/mss-exam-portal.iml" filepath="$PROJECT_DIR$/mss-exam-portal/mss-exam-portal.iml" />
     </modules>
   </component>

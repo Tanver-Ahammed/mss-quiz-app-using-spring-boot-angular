@@ -12,7 +12,6 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="exam-portal-back-end" target="11" />
       <module name="mss-exam-portal" target="11" />
     </bytecodeTargetLevel>
   </component>
